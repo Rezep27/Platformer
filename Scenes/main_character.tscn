@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cox2sikv2luvq"]
+[gd_scene load_steps=33 format=3 uid="uid://cox2sikv2luvq"]
 
+[ext_resource type="Script" uid="uid://bdslh2j4umx6y" path="res://Scripts/main_character.gd" id="1_2o0tg"]
 [ext_resource type="Texture2D" uid="uid://dyu7ffwf7m11g" path="res://Assets/MainCharacter/idle/tile000.png" id="1_esnnb"]
 [ext_resource type="Texture2D" uid="uid://cxpcw2foadsfp" path="res://Assets/MainCharacter/idle/tile001.png" id="2_2o0tg"]
 [ext_resource type="Texture2D" uid="uid://balp2irq87dm8" path="res://Assets/MainCharacter/idle/tile002.png" id="3_umvch"]
@@ -10,6 +11,31 @@
 [ext_resource type="Texture2D" uid="uid://dh5mq7cyw373y" path="res://Assets/MainCharacter/idle/tile007.png" id="8_7eqbn"]
 [ext_resource type="Texture2D" uid="uid://8a5jmoqsaug1" path="res://Assets/MainCharacter/idle/tile008.png" id="9_olw23"]
 [ext_resource type="Texture2D" uid="uid://cxv4fr8ctpqge" path="res://Assets/MainCharacter/idle/tile009.png" id="10_pqtas"]
+[ext_resource type="Texture2D" uid="uid://bcrcvha7te78k" path="res://Assets/MainCharacter/walk/tile000.png" id="12_3fyl4"]
+[ext_resource type="Texture2D" uid="uid://bi8ywwerwyata" path="res://Assets/MainCharacter/walk/tile001.png" id="13_70frn"]
+[ext_resource type="Texture2D" uid="uid://7kjfxotmvm1r" path="res://Assets/MainCharacter/walk/tile002.png" id="14_2iyu0"]
+[ext_resource type="Texture2D" uid="uid://dswhbnsdd6vwe" path="res://Assets/MainCharacter/walk/tile003.png" id="15_fa62s"]
+[ext_resource type="Texture2D" uid="uid://dtcpkv1pskhg6" path="res://Assets/MainCharacter/walk/tile004.png" id="16_qm3n0"]
+[ext_resource type="Texture2D" uid="uid://cyluw85h62p38" path="res://Assets/MainCharacter/walk/tile005.png" id="17_x7aao"]
+[ext_resource type="Texture2D" uid="uid://4r8i0uqtesck" path="res://Assets/MainCharacter/walk/tile006.png" id="18_6ouu6"]
+[ext_resource type="Texture2D" uid="uid://dru05l5e6qkcb" path="res://Assets/MainCharacter/walk/tile007.png" id="19_i5hpi"]
+[ext_resource type="Texture2D" uid="uid://btg33yw34nu" path="res://Assets/MainCharacter/walk/tile008.png" id="20_5pc05"]
+[ext_resource type="Texture2D" uid="uid://do73ybiqm1na1" path="res://Assets/MainCharacter/walk/tile009.png" id="21_ael05"]
+
+[sub_resource type="Animation" id="Animation_0eyao"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_esnnb")]
+}
 
 [sub_resource type="Animation" id="Animation_i1xd3"]
 resource_name = "idle"
@@ -27,8 +53,8 @@ tracks/0/keys = {
 "values": [ExtResource("1_esnnb"), ExtResource("2_2o0tg"), ExtResource("3_umvch"), ExtResource("4_5av31"), ExtResource("5_3vvc7"), ExtResource("6_6ic4x"), ExtResource("7_hajwg"), ExtResource("8_7eqbn"), ExtResource("9_olw23"), ExtResource("10_pqtas")]
 }
 
-[sub_resource type="Animation" id="Animation_0eyao"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_ep7vl"]
+resource_name = "walk"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,26 +62,54 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [null]
+"values": [ExtResource("12_3fyl4"), ExtResource("13_70frn"), ExtResource("14_2iyu0"), ExtResource("15_fa62s"), ExtResource("16_qm3n0"), ExtResource("17_x7aao"), ExtResource("18_6ouu6"), ExtResource("19_i5hpi"), ExtResource("20_5pc05"), ExtResource("21_ael05")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11o2n"]
 _data = {
 &"RESET": SubResource("Animation_0eyao"),
-&"idle": SubResource("Animation_i1xd3")
+&"idle": SubResource("Animation_i1xd3"),
+&"walk": SubResource("Animation_ep7vl")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esnnb"]
 size = Vector2(46, 144)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2o0tg"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3fyl4"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_umvch"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_70frn"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2iyu0"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5av31"]
+states/idle/node = SubResource("AnimationNodeAnimation_2o0tg")
+states/idle/position = Vector2(457.39252, 101.5)
+states/walk/node = SubResource("AnimationNodeAnimation_3fyl4")
+states/walk/position = Vector2(653.8925, 95.98869)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_umvch"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_70frn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_2iyu0")]
+graph_offset = Vector2(158.39252, -53.51131)
+
 [node name="MainCharacter" type="CharacterBody2D"]
+script = ExtResource("1_2o0tg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_esnnb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -66,3 +120,9 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 8)
 shape = SubResource("RectangleShape2D_esnnb")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_5av31")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/is_walking = false
