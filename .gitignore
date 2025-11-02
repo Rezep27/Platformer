@@ -21,7 +21,6 @@ Thumbs.db
 # Archivos temporales de editor
 *.tmp
 *.log
-
 # Mono-specific ignores
 .mono/
 data_*/
