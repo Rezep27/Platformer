@@ -1,0 +1,18 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot-specific
+.import/
+export_presets.cfg
+.project_metadata/
+.cache/
+
+# Sistema operativo
+Thumbs.db
+.DS_Store
+
+# Archivos temporales de editor
+*.tmp
+*.log
+

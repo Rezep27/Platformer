@@ -1,0 +1,68 @@
+[gd_scene load_steps=15 format=3 uid="uid://cox2sikv2luvq"]
+
+[ext_resource type="Texture2D" uid="uid://dyu7ffwf7m11g" path="res://Assets/MainCharacter/idle/tile000.png" id="1_esnnb"]
+[ext_resource type="Texture2D" uid="uid://cxpcw2foadsfp" path="res://Assets/MainCharacter/idle/tile001.png" id="2_2o0tg"]
+[ext_resource type="Texture2D" uid="uid://balp2irq87dm8" path="res://Assets/MainCharacter/idle/tile002.png" id="3_umvch"]
+[ext_resource type="Texture2D" uid="uid://j84bj2rcq0vh" path="res://Assets/MainCharacter/idle/tile003.png" id="4_5av31"]
+[ext_resource type="Texture2D" uid="uid://bwl0edla6bicj" path="res://Assets/MainCharacter/idle/tile004.png" id="5_3vvc7"]
+[ext_resource type="Texture2D" uid="uid://dbceb6e3cxaqi" path="res://Assets/MainCharacter/idle/tile005.png" id="6_6ic4x"]
+[ext_resource type="Texture2D" uid="uid://rrrn261vvx1v" path="res://Assets/MainCharacter/idle/tile006.png" id="7_hajwg"]
+[ext_resource type="Texture2D" uid="uid://dh5mq7cyw373y" path="res://Assets/MainCharacter/idle/tile007.png" id="8_7eqbn"]
+[ext_resource type="Texture2D" uid="uid://8a5jmoqsaug1" path="res://Assets/MainCharacter/idle/tile008.png" id="9_olw23"]
+[ext_resource type="Texture2D" uid="uid://cxv4fr8ctpqge" path="res://Assets/MainCharacter/idle/tile009.png" id="10_pqtas"]
+
+[sub_resource type="Animation" id="Animation_i1xd3"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_esnnb"), ExtResource("2_2o0tg"), ExtResource("3_umvch"), ExtResource("4_5av31"), ExtResource("5_3vvc7"), ExtResource("6_6ic4x"), ExtResource("7_hajwg"), ExtResource("8_7eqbn"), ExtResource("9_olw23"), ExtResource("10_pqtas")]
+}
+
+[sub_resource type="Animation" id="Animation_0eyao"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_11o2n"]
+_data = {
+&"RESET": SubResource("Animation_0eyao"),
+&"idle": SubResource("Animation_i1xd3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esnnb"]
+size = Vector2(46, 144)
+
+[node name="MainCharacter" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_11o2n")
+}
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 8)
+shape = SubResource("RectangleShape2D_esnnb")
