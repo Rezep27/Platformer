@@ -11,11 +11,17 @@ var attack_index : int = 0
 #State, if the user can chain an attack
 var can_chain : bool = false
 
+var attack_damage = 30
+
 #Set animation tree to a variable so we can access parameters
 @onready var animation_tree : AnimationTree = $AnimationTree
 
 #Set direction as global variable
 var direction
+
+func _ready() -> void:
+	$HitBox/DamageCollider.set_deferred("disabled", true)
+
 func _process(delta : float):
 	if Input.is_action_just_pressed("attack"):
 		if !is_busy and attack_index == 0:
@@ -92,3 +98,14 @@ func _on_combo_timer_timeout() -> void:
 #so that they won't stay turned on after the animation finishes
 func set_animation_state_to_false(anim_name):
 	animation_tree["parameters/conditions/" + anim_name] = false
+
+func enable_hit_collider():
+	$HitBox/DamageCollider.set_deferred("disabled", false)
+	
+func disable_hit_collider():
+	$HitBox/DamageCollider.set_deferred("disabled", true)
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		body.apply_damage(attack_damage)

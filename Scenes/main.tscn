@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwwu8dq8y32cr"]
+[gd_scene load_steps=4 format=3 uid="uid://bwwu8dq8y32cr"]
 
 [ext_resource type="PackedScene" uid="uid://cox2sikv2luvq" path="res://Scenes/main_character.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://d14odcyq38pte" path="res://Scenes/golem1.tscn" id="2_bo1nx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 size = Vector2(1883, 56)
@@ -8,10 +9,16 @@ size = Vector2(1883, 56)
 [node name="main" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(531, 576)
 shape = SubResource("RectangleShape2D_7u77a")
+debug_color = Color(0.6509804, 0.42745098, 0.24313726, 0.41960785)
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_jjgbg")]
 position = Vector2(304, 461)
+
+[node name="Golem1" parent="." instance=ExtResource("2_bo1nx")]
+position = Vector2(822, 469)

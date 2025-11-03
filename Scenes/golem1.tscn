@@ -1,0 +1,88 @@
+[gd_scene load_steps=17 format=3 uid="uid://d14odcyq38pte"]
+
+[ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
+[ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
+[ext_resource type="Texture2D" uid="uid://b4ncgwp8imbes" path="res://Assets/Enemies/Golem1/idle/tile001.png" id="2_01dtv"]
+[ext_resource type="Texture2D" uid="uid://bxn5dgg1rrl53" path="res://Assets/Enemies/Golem1/idle/tile002.png" id="3_fwbkh"]
+[ext_resource type="Texture2D" uid="uid://cn2iekmfis5gd" path="res://Assets/Enemies/Golem1/idle/tile003.png" id="4_wakti"]
+[ext_resource type="Texture2D" uid="uid://csgdi71vxqy7g" path="res://Assets/Enemies/Golem1/idle/tile004.png" id="5_nr40b"]
+[ext_resource type="Texture2D" uid="uid://16dk4iemtuck" path="res://Assets/Enemies/Golem1/idle/tile005.png" id="6_8dar4"]
+[ext_resource type="Texture2D" uid="uid://bo5cw0immg5dw" path="res://Assets/Enemies/Golem1/idle/tile006.png" id="7_rncs2"]
+[ext_resource type="Texture2D" uid="uid://s7johhgb1d28" path="res://Assets/Enemies/Golem1/idle/tile007.png" id="8_kwpm0"]
+
+[sub_resource type="Animation" id="Animation_5g0rk"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_5g0rk"), ExtResource("2_01dtv"), ExtResource("3_fwbkh"), ExtResource("4_wakti"), ExtResource("5_nr40b"), ExtResource("6_8dar4"), ExtResource("7_rncs2"), ExtResource("8_kwpm0")]
+}
+
+[sub_resource type="Animation" id="Animation_e0gn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_5g0rk")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_da1ag"]
+_data = {
+&"RESET": SubResource("Animation_e0gn1"),
+&"idle": SubResource("Animation_5g0rk")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01dtv"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fwbkh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l5ckk"]
+states/idle/node = SubResource("AnimationNodeAnimation_01dtv")
+states/idle/position = Vector2(367.5, 88.5)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01dtv"]
+size = Vector2(106, 119)
+
+[node name="Golem1" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_fwbkh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -55)
+scale = Vector2(4, 4)
+texture = ExtResource("1_5g0rk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_da1ag")
+}
+autoplay = "idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_l5ckk")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_01dtv")
+debug_color = Color(0.93540174, 0.22131595, 0.33283046, 0.41960785)
