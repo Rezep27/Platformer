@@ -24,6 +24,12 @@ func _process(delta : float):
 		elif (attack_index == 1 and can_chain):
 			attack_index = 2
 			_start_attack("attack2")
+		elif (attack_index == 2 and can_chain):
+			attack_index = 3
+			_start_attack("attack3")
+		elif (attack_index == 3 and can_chain):
+			attack_index = 4
+			_start_attack("attack4")
 
 	update_animation()
 	
@@ -62,10 +68,10 @@ func _start_attack(attack_para : String):
 	#Turns the condition off in the next frame, we just want to be able to enter the state once
 	
 func attack_animation_finished(animation_name):
-	if animation_name == "attack1":
+	if animation_name == "attack1" or animation_name == "attack2" or animation_name == "attack3":
 		can_chain = true
 		$ComboTimer.start()
-	elif animation_name == "attack2":
+	elif animation_name == "attack4":
 		_go_to_recovery()
 		
 
