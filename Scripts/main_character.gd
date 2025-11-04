@@ -11,6 +11,9 @@ var attack_index : int = 0
 #State, if the user can chain an attack
 var can_chain : bool = false
 
+#State of hitstop
+var is_on_hitstop = false
+
 var attack_damage = 30
 
 #Set animation tree to a variable so we can access parameters
@@ -109,3 +112,4 @@ func disable_hit_collider():
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.apply_damage(attack_damage)
+		Hitstop.hit_stop(Hitstop.AttackType.LIGHT);

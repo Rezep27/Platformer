@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d14odcyq38pte"]
+[gd_scene load_steps=23 format=3 uid="uid://d14odcyq38pte"]
 
 [ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
 [ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
@@ -9,6 +9,23 @@
 [ext_resource type="Texture2D" uid="uid://16dk4iemtuck" path="res://Assets/Enemies/Golem1/idle/tile005.png" id="6_8dar4"]
 [ext_resource type="Texture2D" uid="uid://bo5cw0immg5dw" path="res://Assets/Enemies/Golem1/idle/tile006.png" id="7_rncs2"]
 [ext_resource type="Texture2D" uid="uid://s7johhgb1d28" path="res://Assets/Enemies/Golem1/idle/tile007.png" id="8_kwpm0"]
+[ext_resource type="Texture2D" uid="uid://dm2wo08rpfrtc" path="res://Assets/Enemies/Golem1/hurt/tile001.png" id="10_nr40b"]
+[ext_resource type="Texture2D" uid="uid://ced514p1axn5p" path="res://Assets/Enemies/Golem1/hurt/tile002.png" id="11_8dar4"]
+
+[sub_resource type="Animation" id="Animation_e0gn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_5g0rk")]
+}
 
 [sub_resource type="Animation" id="Animation_5g0rk"]
 resource_name = "idle"
@@ -26,8 +43,9 @@ tracks/0/keys = {
 "values": [ExtResource("1_5g0rk"), ExtResource("2_01dtv"), ExtResource("3_fwbkh"), ExtResource("4_wakti"), ExtResource("5_nr40b"), ExtResource("6_8dar4"), ExtResource("7_rncs2"), ExtResource("8_kwpm0")]
 }
 
-[sub_resource type="Animation" id="Animation_e0gn1"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_fwbkh"]
+resource_name = "hurt"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,17 +53,35 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("10_nr40b"), ExtResource("11_8dar4")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_5g0rk")]
+"values": [{
+"args": ["hurt"],
+"method": &"set_animation_state_false"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_da1ag"]
 _data = {
 &"RESET": SubResource("Animation_e0gn1"),
+&"hurt": SubResource("Animation_fwbkh"),
 &"idle": SubResource("Animation_5g0rk")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nr40b"]
+animation = &"hurt"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01dtv"]
 animation = &"idle"
@@ -53,10 +89,21 @@ animation = &"idle"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fwbkh"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8dar4"]
+advance_mode = 2
+advance_condition = &"hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rncs2"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l5ckk"]
+states/hurt/node = SubResource("AnimationNodeAnimation_nr40b")
+states/hurt/position = Vector2(367.5, 205)
 states/idle/node = SubResource("AnimationNodeAnimation_01dtv")
 states/idle/position = Vector2(367.5, 88.5)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_8dar4"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rncs2")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01dtv"]
 size = Vector2(106, 119)
@@ -81,6 +128,8 @@ autoplay = "idle"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_l5ckk")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/hurt = false
+parameters/conditions/idle = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13.5)

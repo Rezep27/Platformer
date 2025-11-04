@@ -572,6 +572,10 @@ parameters/conditions/is_walking = false
 wait_time = 0.3
 one_shot = true
 
+[node name="HitStop" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true
+
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(87, -2)
 collision_layer = 8
@@ -582,4 +586,5 @@ position = Vector2(-35, -15)
 polygon = PackedVector2Array(14, -80, 61, -34, 73, 17, 65, 83, -1, 85, 9, 18, -11, -39)
 
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="HitStop" to="." method="_on_hit_stop_timeout"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
