@@ -17,8 +17,8 @@ position = Vector2(531, 576)
 shape = SubResource("RectangleShape2D_7u77a")
 debug_color = Color(0.6509804, 0.42745098, 0.24313726, 0.41960785)
 
-[node name="MainCharacter" parent="." instance=ExtResource("1_jjgbg")]
-position = Vector2(304, 461)
-
 [node name="Golem1" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(822, 469)
+
+[node name="MainCharacter" parent="." instance=ExtResource("1_jjgbg")]
+position = Vector2(304, 461)

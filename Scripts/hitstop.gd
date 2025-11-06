@@ -11,7 +11,7 @@ func hit_stop(attackType : AttackType):
 	
 	match attackType:
 		AttackType.LIGHT:
-			duration = 0.08
+			duration = 0.12
 		AttackType.HEAVY:
 			duration = 0.12
 		AttackType.SPECIAL:
