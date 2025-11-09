@@ -3,11 +3,18 @@ extends Node
 
 @export var max_health : float = 100
 var current_health = max_health
-var animation_tree : AnimationTree
+
+signal entity_dies
+	
 func _ready() -> void:
-	animation_tree = get_parent().get("AnimationTree")
+	get_parent().connect_health_signals()
 	
 func apply_damage(damage : int):
 	current_health -= damage
-	animation_tree["parameters/conditions/hurt"] = true
-	print("Current health is " + str(current_health))
+	print("Current health on health component is " + str(current_health))
+	if current_health <= max_health:
+		die()
+
+func die():
+	entity_dies.emit()
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d14odcyq38pte"]
+[gd_scene load_steps=24 format=3 uid="uid://d14odcyq38pte"]
 
 [ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
 [ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://s7johhgb1d28" path="res://Assets/Enemies/Golem1/idle/tile007.png" id="8_kwpm0"]
 [ext_resource type="Texture2D" uid="uid://dm2wo08rpfrtc" path="res://Assets/Enemies/Golem1/hurt/tile001.png" id="10_nr40b"]
 [ext_resource type="Texture2D" uid="uid://ced514p1axn5p" path="res://Assets/Enemies/Golem1/hurt/tile002.png" id="11_8dar4"]
+[ext_resource type="PackedScene" uid="uid://7xmit46ayekb" path="res://Scenes/health_component.tscn" id="12_8dar4"]
 
 [sub_resource type="Animation" id="Animation_e0gn1"]
 length = 0.001
@@ -130,6 +131,8 @@ tree_root = SubResource("AnimationNodeStateMachine_l5ckk")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/hurt = false
 parameters/conditions/idle = false
+
+[node name="HealthComponent" parent="." instance=ExtResource("12_8dar4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13.5)

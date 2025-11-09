@@ -4,9 +4,9 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-var health : float = 100
 
 @onready var animation_tree : AnimationTree = $AnimationTree
+@onready var health_component : Node = $HealthComponent
 
 func _process(delta: float) -> void:
 	check_animation()
@@ -22,9 +22,15 @@ func check_animation():
 	if velocity == Vector2.ZERO:
 		animation_tree["parameters/conditions/idle"] = true
 func apply_damage(damage : float):
-	health -= damage
 	animation_tree["parameters/conditions/hurt"] = true
-	print("Current health is " + str(health))
+	$HealthComponent.apply_damage(damage)
 
 func set_animation_state_false(animationName : String):
 		animation_tree["parameters/conditions/" + animationName] = false
+		
+func connect_health_signals():
+	health_component.entity_dies.connect("on_entity_death")
+
+func on_entity_death():
+	animation_tree["parameterd/conditions/"]
+	
