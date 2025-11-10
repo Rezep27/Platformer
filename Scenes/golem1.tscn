@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d14odcyq38pte"]
+[gd_scene load_steps=41 format=3 uid="uid://d14odcyq38pte"]
 
 [ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
 [ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
@@ -12,6 +12,19 @@
 [ext_resource type="Texture2D" uid="uid://dm2wo08rpfrtc" path="res://Assets/Enemies/Golem1/hurt/tile001.png" id="10_nr40b"]
 [ext_resource type="Texture2D" uid="uid://ced514p1axn5p" path="res://Assets/Enemies/Golem1/hurt/tile002.png" id="11_8dar4"]
 [ext_resource type="PackedScene" uid="uid://7xmit46ayekb" path="res://Scenes/health_component.tscn" id="12_8dar4"]
+[ext_resource type="Texture2D" uid="uid://dgppbt4b3fpv3" path="res://Assets/Enemies/Golem1/die/tile000.png" id="12_c247b"]
+[ext_resource type="Texture2D" uid="uid://cb4v0llfcupac" path="res://Assets/Enemies/Golem1/die/tile001.png" id="13_jovme"]
+[ext_resource type="Texture2D" uid="uid://5fftppr1j5p6" path="res://Assets/Enemies/Golem1/die/tile002.png" id="14_0klde"]
+[ext_resource type="Texture2D" uid="uid://cwxbeqa1n53vp" path="res://Assets/Enemies/Golem1/die/tile003.png" id="15_du3wi"]
+[ext_resource type="Texture2D" uid="uid://y7imqnnciffo" path="res://Assets/Enemies/Golem1/die/tile004.png" id="16_f5lot"]
+[ext_resource type="Texture2D" uid="uid://dwqqyahfmgcya" path="res://Assets/Enemies/Golem1/die/tile005.png" id="17_6j464"]
+[ext_resource type="Texture2D" uid="uid://bc0vokrj4dkmc" path="res://Assets/Enemies/Golem1/die/tile006.png" id="18_d0dg2"]
+[ext_resource type="Texture2D" uid="uid://bwe3b1dm0ysce" path="res://Assets/Enemies/Golem1/die/tile007.png" id="19_1g6hl"]
+[ext_resource type="Texture2D" uid="uid://b1vqam2cs12x" path="res://Assets/Enemies/Golem1/die/tile008.png" id="20_pgvrp"]
+[ext_resource type="Texture2D" uid="uid://bqs0jd315tddd" path="res://Assets/Enemies/Golem1/die/tile009.png" id="21_wjaof"]
+[ext_resource type="Texture2D" uid="uid://b0jl1rehjfm3m" path="res://Assets/Enemies/Golem1/die/tile010.png" id="22_5upfm"]
+[ext_resource type="Texture2D" uid="uid://dg2g18r5ppci6" path="res://Assets/Enemies/Golem1/die/tile011.png" id="23_i8kyq"]
+[ext_resource type="Texture2D" uid="uid://bdwqbhp3de0yy" path="res://Assets/Enemies/Golem1/die/tile012.png" id="24_espec"]
 
 [sub_resource type="Animation" id="Animation_e0gn1"]
 length = 0.001
@@ -74,12 +87,46 @@ tracks/0/keys = {
 "values": [ExtResource("1_5g0rk"), ExtResource("2_01dtv"), ExtResource("3_fwbkh"), ExtResource("4_wakti"), ExtResource("5_nr40b"), ExtResource("6_8dar4"), ExtResource("7_rncs2"), ExtResource("8_kwpm0")]
 }
 
+[sub_resource type="Animation" id="Animation_4t0ej"]
+resource_name = "die"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_c247b"), ExtResource("13_jovme"), ExtResource("14_0klde"), ExtResource("15_du3wi"), ExtResource("16_f5lot"), ExtResource("17_6j464"), ExtResource("18_d0dg2"), ExtResource("19_1g6hl"), ExtResource("20_pgvrp"), ExtResource("21_wjaof"), ExtResource("22_5upfm"), ExtResource("23_i8kyq"), ExtResource("24_espec")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete_enemy"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_da1ag"]
 _data = {
 &"RESET": SubResource("Animation_e0gn1"),
+&"die": SubResource("Animation_4t0ej"),
 &"hurt": SubResource("Animation_fwbkh"),
 &"idle": SubResource("Animation_5g0rk")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c247b"]
+animation = &"die"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nr40b"]
 animation = &"hurt"
@@ -99,12 +146,25 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jovme"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"die"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c247b"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l5ckk"]
+states/End/position = Vector2(888.5, 201.875)
+states/die/node = SubResource("AnimationNodeAnimation_c247b")
+states/die/position = Vector2(495, 202.75)
 states/hurt/node = SubResource("AnimationNodeAnimation_nr40b")
 states/hurt/position = Vector2(367.5, 205)
 states/idle/node = SubResource("AnimationNodeAnimation_01dtv")
 states/idle/position = Vector2(367.5, 88.5)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_8dar4"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rncs2")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_8dar4"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rncs2"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_jovme"), "die", "End", SubResource("AnimationNodeStateMachineTransition_c247b")]
+graph_offset = Vector2(206.47478, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01dtv"]
 size = Vector2(106, 119)
@@ -129,6 +189,7 @@ autoplay = "idle"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_l5ckk")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/die = false
 parameters/conditions/hurt = false
 parameters/conditions/idle = false
 
@@ -138,3 +199,5 @@ parameters/conditions/idle = false
 position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_01dtv")
 debug_color = Color(0.93540174, 0.22131595, 0.33283046, 0.41960785)
+
+[connection signal="entity_dies" from="HealthComponent" to="." method="on_entity_death"]

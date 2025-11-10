@@ -583,7 +583,7 @@ collision_mask = 2
 
 [node name="DamageCollider" type="CollisionPolygon2D" parent="HitBox"]
 position = Vector2(-35, -15)
-polygon = PackedVector2Array(14, -80, 61, -34, 73, 17, 65, 83, -1, 85, 9, 18, -11, -39)
+polygon = PackedVector2Array(-2, -86, 61, -34, 73, 17, 65, 83, -27, 90, -21, 25, -11, -39)
 
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="HitStop" to="." method="_on_hit_stop_timeout"]

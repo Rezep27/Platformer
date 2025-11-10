@@ -27,10 +27,10 @@ func apply_damage(damage : float):
 
 func set_animation_state_false(animationName : String):
 		animation_tree["parameters/conditions/" + animationName] = false
-		
-func connect_health_signals():
-	health_component.entity_dies.connect("on_entity_death")
 
 func on_entity_death():
-	animation_tree["parameterd/conditions/"]
+	animation_tree["parameters/conditions/die"] = true
+
+func delete_enemy():
+	queue_free()
 	

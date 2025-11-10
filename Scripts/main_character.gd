@@ -26,6 +26,7 @@ func _ready() -> void:
 	$HitBox/DamageCollider.set_deferred("disabled", true)
 
 func _process(delta : float):
+	_flip_character()
 	if Input.is_action_just_pressed("attack"):
 		if !is_busy and attack_index == 0:
 			attack_index = 1
@@ -113,3 +114,9 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.apply_damage(attack_damage)
 		Hitstop.hit_stop(Hitstop.AttackType.LIGHT);
+		
+func _flip_character():
+	if velocity.x < 0:
+		scale.x = -1
+	elif velocity.x > 0:
+		scale.x = 1
