@@ -21,12 +21,13 @@ var attack_damage = 30
 
 #Set direction as global variable
 var direction
+var facing_right = true
 
 func _ready() -> void:
 	$HitBox/DamageCollider.set_deferred("disabled", true)
 
 func _process(delta : float):
-	_flip_character()
+	_update_facing()
 	if Input.is_action_just_pressed("attack"):
 		if !is_busy and attack_index == 0:
 			attack_index = 1
@@ -59,7 +60,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
 	move_and_slide()
 
 
@@ -115,8 +115,16 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 		body.apply_damage(attack_damage)
 		Hitstop.hit_stop(Hitstop.AttackType.LIGHT);
 		
-func _flip_character():
-	if velocity.x < 0:
-		scale.x = -1
-	elif velocity.x > 0:
-		scale.x = 1
+		
+func _update_facing():
+	if Input.is_action_just_pressed("right") and !facing_right:
+		facing_right = true
+		scale.x *= -1
+		
+	if Input.is_action_just_pressed("left") and facing_right:
+		facing_right = false
+		scale.x *= -1
+		
+	
+	
+		
