@@ -20,6 +20,7 @@ Hitstop="*res://Scripts/hitstop.gd"
 
 [display]
 
+window/size/initial_position_type=0
 display_server/driver.linuxbsd="wayland"
 
 [input]
