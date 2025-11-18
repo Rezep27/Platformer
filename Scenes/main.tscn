@@ -26,6 +26,7 @@ debug_color = Color(0.6509804, 0.42745098, 0.24313726, 0.41960785)
 
 [node name="Golem1" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(822, 469)
+scale = Vector2(-1, 1)
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_jjgbg")]
 position = Vector2(304, 461)

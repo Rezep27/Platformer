@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d14odcyq38pte"]
+[gd_scene load_steps=52 format=3 uid="uid://d14odcyq38pte"]
 
 [ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
 [ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
@@ -25,6 +25,16 @@
 [ext_resource type="Texture2D" uid="uid://b0jl1rehjfm3m" path="res://Assets/Enemies/Golem1/die/tile010.png" id="22_5upfm"]
 [ext_resource type="Texture2D" uid="uid://dg2g18r5ppci6" path="res://Assets/Enemies/Golem1/die/tile011.png" id="23_i8kyq"]
 [ext_resource type="Texture2D" uid="uid://bdwqbhp3de0yy" path="res://Assets/Enemies/Golem1/die/tile012.png" id="24_espec"]
+[ext_resource type="Texture2D" uid="uid://bd85p6pytws8v" path="res://Assets/Enemies/Golem1/attack/tile000.png" id="25_5upfm"]
+[ext_resource type="Texture2D" uid="uid://c35j46qo23din" path="res://Assets/Enemies/Golem1/attack/tile001.png" id="26_i8kyq"]
+[ext_resource type="Texture2D" uid="uid://c37l13xea4rg3" path="res://Assets/Enemies/Golem1/attack/tile002.png" id="27_espec"]
+[ext_resource type="Texture2D" uid="uid://bqq52cdd6piup" path="res://Assets/Enemies/Golem1/attack/tile003.png" id="28_4t0ej"]
+[ext_resource type="Texture2D" uid="uid://3hvd2r3q50es" path="res://Assets/Enemies/Golem1/attack/tile004.png" id="29_6vydl"]
+[ext_resource type="Texture2D" uid="uid://d1h0a8mfpwxvo" path="res://Assets/Enemies/Golem1/attack/tile005.png" id="30_h4umi"]
+[ext_resource type="Texture2D" uid="uid://qm7ieua51oa8" path="res://Assets/Enemies/Golem1/attack/tile006.png" id="31_f2hjq"]
+[ext_resource type="Texture2D" uid="uid://b5d028lt801ow" path="res://Assets/Enemies/Golem1/attack/tile007.png" id="32_toivp"]
+[ext_resource type="Texture2D" uid="uid://2rd7lr2ygcav" path="res://Assets/Enemies/Golem1/attack/tile008.png" id="33_vpne7"]
+[ext_resource type="Texture2D" uid="uid://bkv4sao0lwjx" path="res://Assets/Enemies/Golem1/attack/tile009.png" id="34_3axlk"]
 
 [sub_resource type="Animation" id="Animation_e0gn1"]
 length = 0.001
@@ -39,6 +49,36 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_5g0rk")]
+}
+
+[sub_resource type="Animation" id="Animation_4t0ej"]
+resource_name = "die"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_c247b"), ExtResource("13_jovme"), ExtResource("14_0klde"), ExtResource("15_du3wi"), ExtResource("16_f5lot"), ExtResource("17_6j464"), ExtResource("18_d0dg2"), ExtResource("19_1g6hl"), ExtResource("20_pgvrp"), ExtResource("21_wjaof"), ExtResource("22_5upfm"), ExtResource("23_i8kyq"), ExtResource("24_espec")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete_enemy"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_fwbkh"]
@@ -87,9 +127,8 @@ tracks/0/keys = {
 "values": [ExtResource("1_5g0rk"), ExtResource("2_01dtv"), ExtResource("3_fwbkh"), ExtResource("4_wakti"), ExtResource("5_nr40b"), ExtResource("6_8dar4"), ExtResource("7_rncs2"), ExtResource("8_kwpm0")]
 }
 
-[sub_resource type="Animation" id="Animation_4t0ej"]
-resource_name = "die"
-length = 1.3
+[sub_resource type="Animation" id="Animation_ex2sn"]
+resource_name = "attack"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,29 +136,16 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.29999998, 0.36666664, 0.46666664, 0.5333333, 0.59999996, 0.6666666, 0.76666665, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("12_c247b"), ExtResource("13_jovme"), ExtResource("14_0klde"), ExtResource("15_du3wi"), ExtResource("16_f5lot"), ExtResource("17_6j464"), ExtResource("18_d0dg2"), ExtResource("19_1g6hl"), ExtResource("20_pgvrp"), ExtResource("21_wjaof"), ExtResource("22_5upfm"), ExtResource("23_i8kyq"), ExtResource("24_espec")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.2666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"delete_enemy"
-}]
+"values": [ExtResource("25_5upfm"), ExtResource("26_i8kyq"), ExtResource("27_espec"), ExtResource("28_4t0ej"), ExtResource("29_6vydl"), ExtResource("30_h4umi"), ExtResource("31_f2hjq"), ExtResource("32_toivp"), ExtResource("33_vpne7"), ExtResource("34_3axlk"), ExtResource("1_5g0rk")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_da1ag"]
 _data = {
 &"RESET": SubResource("Animation_e0gn1"),
+&"attack": SubResource("Animation_ex2sn"),
 &"die": SubResource("Animation_4t0ej"),
 &"hurt": SubResource("Animation_fwbkh"),
 &"idle": SubResource("Animation_5g0rk")
@@ -199,5 +225,11 @@ parameters/conditions/idle = false
 position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_01dtv")
 debug_color = Color(0.93540174, 0.22131595, 0.33283046, 0.41960785)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(58, -2)
+polygon = PackedVector2Array(-2, -62, 43, -16, 57, 20, 63, 76, 1, 74)
 
 [connection signal="entity_dies" from="HealthComponent" to="." method="on_entity_death"]
