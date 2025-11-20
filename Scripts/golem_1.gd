@@ -12,6 +12,8 @@ var player_in_attack_range : bool = false
 
 func _process(delta: float) -> void:
 	check_animation()
+	if (player_in_attack_range):
+		attack()
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -42,8 +44,7 @@ func attack():
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player_in_attack_range = true
+	player_in_attack_range = true
 
 
 func _on_hitbox_body_exited(body: Node2D) -> void:

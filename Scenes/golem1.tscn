@@ -189,6 +189,7 @@ advance_mode = 2
 advance_condition = &"attack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_espec"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
