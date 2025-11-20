@@ -535,7 +535,7 @@ states/walk/position = Vector2(653.8925, 95.98869)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_umvch"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_70frn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_2iyu0"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_26562"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_4xl3q"), "attack1", "attack1_recover", SubResource("AnimationNodeStateMachineTransition_dj3fl"), "attack1_recover", "idle", SubResource("AnimationNodeStateMachineTransition_abtru"), "attack1_recover", "walk", SubResource("AnimationNodeStateMachineTransition_ybmxl"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_gxyj0"), "attack2", "attack2_recover", SubResource("AnimationNodeStateMachineTransition_nijos"), "attack2_recover", "idle", SubResource("AnimationNodeStateMachineTransition_nqlx2"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_qotad"), "attack3", "attack3_recover", SubResource("AnimationNodeStateMachineTransition_r4o7w"), "attack3_recover", "idle", SubResource("AnimationNodeStateMachineTransition_k5ert"), "attack3", "attack4", SubResource("AnimationNodeStateMachineTransition_o3eni"), "attack4", "attack4_recover", SubResource("AnimationNodeStateMachineTransition_f3043"), "attack4_recover", "idle", SubResource("AnimationNodeStateMachineTransition_lqk43")]
 graph_offset = Vector2(-56.362022, -71.46981)
 
-[node name="MainCharacter" type="CharacterBody2D"]
+[node name="MainCharacter" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
 script = ExtResource("1_2o0tg")
 
@@ -572,10 +572,6 @@ parameters/conditions/is_walking = false
 wait_time = 0.3
 one_shot = true
 
-[node name="HitStop" type="Timer" parent="."]
-wait_time = 0.06
-one_shot = true
-
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(87, -2)
 collision_layer = 8
@@ -586,5 +582,4 @@ position = Vector2(-35, -15)
 polygon = PackedVector2Array(-2, -86, 61, -34, 73, 17, 65, 83, -27, 90, -21, 25, -11, -39)
 
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
-[connection signal="timeout" from="HitStop" to="." method="_on_hit_stop_timeout"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+var player_in_attack_range : bool = false
+
 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var health_component : Node = $HealthComponent
@@ -34,3 +36,15 @@ func on_entity_death():
 func delete_enemy():
 	queue_free()
 	
+func attack():
+	animation_tree["parameters/conditions/attack"] = true
+
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_in_attack_range = true
+
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

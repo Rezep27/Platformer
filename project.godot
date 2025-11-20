@@ -23,6 +23,10 @@ Hitstop="*res://Scripts/hitstop.gd"
 window/size/initial_position_type=0
 display_server/driver.linuxbsd="wayland"
 
+[global_group]
+
+player=""
+
 [input]
 
 left={

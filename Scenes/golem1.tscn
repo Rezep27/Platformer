@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://d14odcyq38pte"]
+[gd_scene load_steps=55 format=3 uid="uid://d14odcyq38pte"]
 
 [ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
 [ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
@@ -49,6 +49,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_5g0rk")]
+}
+
+[sub_resource type="Animation" id="Animation_ex2sn"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.29999998, 0.36666664, 0.46666664, 0.5333333, 0.59999996, 0.6666666, 0.76666665, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("25_5upfm"), ExtResource("26_i8kyq"), ExtResource("27_espec"), ExtResource("28_4t0ej"), ExtResource("29_6vydl"), ExtResource("30_h4umi"), ExtResource("31_f2hjq"), ExtResource("32_toivp"), ExtResource("33_vpne7"), ExtResource("34_3axlk"), ExtResource("1_5g0rk")]
 }
 
 [sub_resource type="Animation" id="Animation_4t0ej"]
@@ -127,21 +142,6 @@ tracks/0/keys = {
 "values": [ExtResource("1_5g0rk"), ExtResource("2_01dtv"), ExtResource("3_fwbkh"), ExtResource("4_wakti"), ExtResource("5_nr40b"), ExtResource("6_8dar4"), ExtResource("7_rncs2"), ExtResource("8_kwpm0")]
 }
 
-[sub_resource type="Animation" id="Animation_ex2sn"]
-resource_name = "attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.29999998, 0.36666664, 0.46666664, 0.5333333, 0.59999996, 0.6666666, 0.76666665, 0.8333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("25_5upfm"), ExtResource("26_i8kyq"), ExtResource("27_espec"), ExtResource("28_4t0ej"), ExtResource("29_6vydl"), ExtResource("30_h4umi"), ExtResource("31_f2hjq"), ExtResource("32_toivp"), ExtResource("33_vpne7"), ExtResource("34_3axlk"), ExtResource("1_5g0rk")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_da1ag"]
 _data = {
 &"RESET": SubResource("Animation_e0gn1"),
@@ -150,6 +150,9 @@ _data = {
 &"hurt": SubResource("Animation_fwbkh"),
 &"idle": SubResource("Animation_5g0rk")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5upfm"]
+animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c247b"]
 animation = &"die"
@@ -181,15 +184,25 @@ advance_condition = &"die"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i8kyq"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_espec"]
+advance_mode = 2
+advance_condition = &"idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l5ckk"]
 states/End/position = Vector2(888.5, 201.875)
+states/attack/node = SubResource("AnimationNodeAnimation_5upfm")
+states/attack/position = Vector2(509.9748, 89.5)
 states/die/node = SubResource("AnimationNodeAnimation_c247b")
 states/die/position = Vector2(495, 202.75)
 states/hurt/node = SubResource("AnimationNodeAnimation_nr40b")
 states/hurt/position = Vector2(367.5, 205)
 states/idle/node = SubResource("AnimationNodeAnimation_01dtv")
 states/idle/position = Vector2(367.5, 88.5)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_8dar4"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rncs2"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_jovme"), "die", "End", SubResource("AnimationNodeStateMachineTransition_c247b")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_8dar4"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_rncs2"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_jovme"), "die", "End", SubResource("AnimationNodeStateMachineTransition_c247b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_i8kyq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_espec")]
 graph_offset = Vector2(206.47478, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01dtv"]
@@ -215,6 +228,7 @@ autoplay = "idle"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_l5ckk")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attack = false
 parameters/conditions/die = false
 parameters/conditions/hurt = false
 parameters/conditions/idle = false
@@ -226,10 +240,16 @@ position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_01dtv")
 debug_color = Color(0.93540174, 0.22131595, 0.33283046, 0.41960785)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="DamageCollider" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2(58, -2)
 polygon = PackedVector2Array(-2, -62, 43, -16, 57, 20, 63, 76, 1, 74)
 
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.6
+
 [connection signal="entity_dies" from="HealthComponent" to="." method="on_entity_death"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
