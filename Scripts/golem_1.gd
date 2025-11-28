@@ -4,7 +4,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-var player_in_attack_range : bool = false
+var is_player_in_attack_range : bool = false
+var can_attack : bool = true
 
 
 @onready var animation_tree : AnimationTree = $AnimationTree
@@ -12,7 +13,7 @@ var player_in_attack_range : bool = false
 
 func _process(delta: float) -> void:
 	check_animation()
-	if (player_in_attack_range):
+	if (is_player_in_attack_range and can_attack):
 		attack()
 	
 func _physics_process(delta: float) -> void:
@@ -26,7 +27,7 @@ func check_animation():
 	if velocity == Vector2.ZERO:
 		animation_tree["parameters/conditions/idle"] = true
 func apply_damage(damage : float):
-	animation_tree["parameters/conditions/hurt"] = true
+	$Sprite2D.start_flash()
 	$HealthComponent.apply_damage(damage)
 
 func set_animation_state_false(animationName : String):
@@ -40,12 +41,22 @@ func delete_enemy():
 	
 func attack():
 	animation_tree["parameters/conditions/attack"] = true
-
+	can_attack = false
+	$AttackCooldown.start()
+	
+#Function to set the animation state to false on the animation tree,
+#so that they won't stay turned on after the animation finishes
+func set_animation_state_to_false(anim_name):
+	animation_tree["parameters/conditions/" + anim_name] = false
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	player_in_attack_range = true
+	is_player_in_attack_range = true
 
 
 func _on_hitbox_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	is_player_in_attack_range = false
+
+
+func _on_attack_cooldown_timeout() -> void:
+	can_attack = true
