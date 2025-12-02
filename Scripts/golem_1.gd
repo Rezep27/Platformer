@@ -50,13 +50,21 @@ func set_animation_state_to_false(anim_name):
 	animation_tree["parameters/conditions/" + anim_name] = false
 
 
-func _on_hitbox_body_entered(body: Node2D) -> void:
+func _on_attack_area_body_entered(body: Node2D) -> void:
 	is_player_in_attack_range = true
 
 
-func _on_hitbox_body_exited(body: Node2D) -> void:
+func _on_attack_area_body_exited(body: Node2D) -> void:
 	is_player_in_attack_range = false
 
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
+
+func _activate_hitbox_collider(): 
+	pass
+
+func _deactivate_hitbox_collider():
+	pass
+	
+	

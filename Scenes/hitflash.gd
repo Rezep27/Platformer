@@ -1,7 +1,7 @@
 extends Sprite2D
 
-@export var flash_duration := 0.1;
-@export var flash_speed := 60.0;
+@export var flash_duration := 0.05;
+@export var flash_speed := 40.0;
 @export var flash_color := Color.WHITE;
 
 var flash_time := 0.0

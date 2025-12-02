@@ -79,11 +79,17 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.43333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": ["attack"],
 "method": &"set_animation_state_false"
+}, {
+"args": [],
+"method": &"_activate_hitbox_collider"
+}, {
+"args": [],
+"method": &"_deactivate_hitbox_collider"
 }]
 }
 
@@ -252,10 +258,10 @@ position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_01dtv")
 debug_color = Color(0.93540174, 0.22131595, 0.33283046, 0.41960785)
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 8
 
-[node name="DamageCollider" type="CollisionPolygon2D" parent="Hitbox"]
+[node name="DamageCollider" type="CollisionPolygon2D" parent="AttackArea"]
 position = Vector2(58, -2)
 polygon = PackedVector2Array(-2, -62, 43, -16, 57, 20, 63, 76, 1, 74)
 
@@ -264,6 +270,6 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="entity_dies" from="HealthComponent" to="." method="on_entity_death"]
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
