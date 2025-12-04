@@ -9,7 +9,6 @@ var mat = null
 
 func _ready():
 	mat = self.material
-	
 	if mat == null:
 		push_warning("Hitflash: No sprite2d or material found")
 		return

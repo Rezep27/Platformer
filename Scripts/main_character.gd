@@ -125,6 +125,10 @@ func _update_facing():
 		facing_right = false
 		scale.x *= -1
 		
+func apply_damage(damage : float):
+	$Sprite2D.start_flash()
+	$HealthComponent.apply_damage(damage)
+		
 	
 	
 		

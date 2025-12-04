@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://cox2sikv2luvq"]
+[gd_scene load_steps=108 format=3 uid="uid://cox2sikv2luvq"]
 
 [ext_resource type="Script" uid="uid://bdslh2j4umx6y" path="res://Scripts/main_character.gd" id="1_2o0tg"]
 [ext_resource type="Texture2D" uid="uid://dyu7ffwf7m11g" path="res://Assets/MainCharacter/idle/tile000.png" id="1_esnnb"]
@@ -65,6 +65,7 @@
 [ext_resource type="Texture2D" uid="uid://byada5p08ovpy" path="res://Assets/MainCharacter/attacks/attack4-recover/tile000.png" id="62_qlvqe"]
 [ext_resource type="Texture2D" uid="uid://btolqn0o1jxw0" path="res://Assets/MainCharacter/attacks/attack4-recover/tile001.png" id="63_i7oiu"]
 [ext_resource type="Texture2D" uid="uid://b2jbpjfsfvvcx" path="res://Assets/MainCharacter/attacks/attack4-recover/tile002.png" id="64_qotad"]
+[ext_resource type="PackedScene" uid="uid://7xmit46ayekb" path="res://Scenes/health_component.tscn" id="66_qotad"]
 
 [sub_resource type="Animation" id="Animation_0eyao"]
 length = 0.001
@@ -582,6 +583,8 @@ collision_mask = 2
 [node name="DamageCollider" type="CollisionPolygon2D" parent="HitBox"]
 position = Vector2(-35, -15)
 polygon = PackedVector2Array(-2, -86, 61, -34, 73, 17, 65, 83, -27, 90, -21, 25, -11, -39)
+
+[node name="HealthComponent" parent="." instance=ExtResource("66_qotad")]
 
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

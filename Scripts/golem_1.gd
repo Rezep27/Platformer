@@ -7,6 +7,8 @@ const JUMP_VELOCITY = -400.0
 var is_player_in_attack_range : bool = false
 var can_attack : bool = true
 
+@export var attack_damage := 40.0;
+
 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var health_component : Node = $HealthComponent
@@ -29,6 +31,7 @@ func _physics_process(delta: float) -> void:
 func check_animation():
 	if velocity == Vector2.ZERO:
 		animation_tree["parameters/conditions/idle"] = true
+		
 func apply_damage(damage : float):
 	$Sprite2D.start_flash()
 	$HealthComponent.apply_damage(damage)
@@ -69,5 +72,8 @@ func _activate_hitbox_collider():
 
 func _deactivate_hitbox_collider():
 	$Hitbox/DamageCollider.set_deferred("disabled", true)
-	
-	
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if (body.is_in_group("player")):
+		body.apply_damage(attack_damage);
+		Hitstop.hit_stop(Hitstop.AttackType.HEAVY);

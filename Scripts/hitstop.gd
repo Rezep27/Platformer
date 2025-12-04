@@ -13,9 +13,9 @@ func hit_stop(attackType : AttackType):
 		AttackType.LIGHT:
 			duration = 0.12
 		AttackType.HEAVY:
-			duration = 0.12
-		AttackType.SPECIAL:
 			duration = 0.20
+		AttackType.SPECIAL:
+			duration = 0.30
 	
 	Engine.time_scale = 0
 	await get_tree().create_timer(duration, true, false, true).timeout
