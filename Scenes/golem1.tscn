@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b4ncgwp8imbes" path="res://Assets/Enemies/Golem1/idle/tile001.png" id="2_01dtv"]
 [ext_resource type="Shader" uid="uid://vsgfoojocejw" path="res://Shaders/hitflash.gdshader" id="2_i8kyq"]
 [ext_resource type="Texture2D" uid="uid://bxn5dgg1rrl53" path="res://Assets/Enemies/Golem1/idle/tile002.png" id="3_fwbkh"]
-[ext_resource type="Script" uid="uid://cnxluudyqqvgq" path="res://Scenes/hitflash.gd" id="4_espec"]
+[ext_resource type="Script" uid="uid://cnxluudyqqvgq" path="res://Scripts/hitflash.gd" id="4_espec"]
 [ext_resource type="Texture2D" uid="uid://cn2iekmfis5gd" path="res://Assets/Enemies/Golem1/idle/tile003.png" id="4_wakti"]
 [ext_resource type="Texture2D" uid="uid://csgdi71vxqy7g" path="res://Assets/Enemies/Golem1/idle/tile004.png" id="5_nr40b"]
 [ext_resource type="Texture2D" uid="uid://16dk4iemtuck" path="res://Assets/Enemies/Golem1/idle/tile005.png" id="6_8dar4"]
@@ -258,12 +258,19 @@ position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_01dtv")
 debug_color = Color(0.93540174, 0.22131595, 0.33283046, 0.41960785)
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="DamageCollider" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(58, -2)
+polygon = PackedVector2Array(-2, -62, 43, -16, 57, 20, 63, 76, 1, 74)
+
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 8
 
-[node name="DamageCollider" type="CollisionPolygon2D" parent="AttackArea"]
+[node name="Collider" type="CollisionPolygon2D" parent="AttackArea"]
 position = Vector2(58, -2)
-polygon = PackedVector2Array(-2, -62, 43, -16, 57, 20, 63, 76, 1, 74)
+polygon = PackedVector2Array(-2, -62, 69, -55, 100, 1, 98, 77, 1, 74)
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 2.0

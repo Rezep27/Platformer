@@ -1,8 +1,9 @@
-[gd_scene load_steps=106 format=3 uid="uid://cox2sikv2luvq"]
+[gd_scene load_steps=107 format=3 uid="uid://cox2sikv2luvq"]
 
 [ext_resource type="Script" uid="uid://bdslh2j4umx6y" path="res://Scripts/main_character.gd" id="1_2o0tg"]
 [ext_resource type="Texture2D" uid="uid://dyu7ffwf7m11g" path="res://Assets/MainCharacter/idle/tile000.png" id="1_esnnb"]
 [ext_resource type="Texture2D" uid="uid://cxpcw2foadsfp" path="res://Assets/MainCharacter/idle/tile001.png" id="2_2o0tg"]
+[ext_resource type="Script" uid="uid://cnxluudyqqvgq" path="res://Scripts/hitflash.gd" id="3_i7oiu"]
 [ext_resource type="Texture2D" uid="uid://balp2irq87dm8" path="res://Assets/MainCharacter/idle/tile002.png" id="3_umvch"]
 [ext_resource type="Texture2D" uid="uid://j84bj2rcq0vh" path="res://Assets/MainCharacter/idle/tile003.png" id="4_5av31"]
 [ext_resource type="Texture2D" uid="uid://bwl0edla6bicj" path="res://Assets/MainCharacter/idle/tile004.png" id="5_3vvc7"]
@@ -543,6 +544,7 @@ script = ExtResource("1_2o0tg")
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_esnnb")
+script = ExtResource("3_i7oiu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

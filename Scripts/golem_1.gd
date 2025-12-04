@@ -11,6 +11,9 @@ var can_attack : bool = true
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var health_component : Node = $HealthComponent
 
+func _ready() -> void:
+	$Hitbox/DamageCollider.set_deferred("disabled", true)
+
 func _process(delta: float) -> void:
 	check_animation()
 	if (is_player_in_attack_range and can_attack):
@@ -62,9 +65,9 @@ func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
 func _activate_hitbox_collider(): 
-	pass
+	$Hitbox/DamageCollider.set_deferred("disabled", false)
 
 func _deactivate_hitbox_collider():
-	pass
+	$Hitbox/DamageCollider.set_deferred("disabled", true)
 	
 	
