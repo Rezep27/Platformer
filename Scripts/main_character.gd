@@ -129,6 +129,6 @@ func apply_damage(damage : float):
 	$Sprite2D.start_flash()
 	$HealthComponent.apply_damage(damage)
 		
-	
-	
-		
+
+func _player_dies() -> void:
+	pass # Replace with function body.

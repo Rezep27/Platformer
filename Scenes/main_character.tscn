@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://cox2sikv2luvq"]
+[gd_scene load_steps=139 format=3 uid="uid://cox2sikv2luvq"]
 
 [ext_resource type="Script" uid="uid://bdslh2j4umx6y" path="res://Scripts/main_character.gd" id="1_2o0tg"]
 [ext_resource type="Texture2D" uid="uid://dyu7ffwf7m11g" path="res://Assets/MainCharacter/idle/tile000.png" id="1_esnnb"]
@@ -67,6 +67,34 @@
 [ext_resource type="Texture2D" uid="uid://btolqn0o1jxw0" path="res://Assets/MainCharacter/attacks/attack4-recover/tile001.png" id="63_i7oiu"]
 [ext_resource type="Texture2D" uid="uid://b2jbpjfsfvvcx" path="res://Assets/MainCharacter/attacks/attack4-recover/tile002.png" id="64_qotad"]
 [ext_resource type="PackedScene" uid="uid://7xmit46ayekb" path="res://Scenes/health_component.tscn" id="66_qotad"]
+[ext_resource type="Texture2D" uid="uid://cidgkbeyljqu6" path="res://Assets/MainCharacter/death/tile000.png" id="67_mw146"]
+[ext_resource type="Texture2D" uid="uid://cu6ebgg4eaglq" path="res://Assets/MainCharacter/death/tile001.png" id="68_caqmr"]
+[ext_resource type="Texture2D" uid="uid://ce4h0kxbagri5" path="res://Assets/MainCharacter/death/tile002.png" id="69_1cnd2"]
+[ext_resource type="Texture2D" uid="uid://db2hw5l3cu5xl" path="res://Assets/MainCharacter/death/tile003.png" id="70_cmbbi"]
+[ext_resource type="Texture2D" uid="uid://co27llldgjy1h" path="res://Assets/MainCharacter/death/tile004.png" id="71_kxxsc"]
+[ext_resource type="Texture2D" uid="uid://kwi77mu58nyq" path="res://Assets/MainCharacter/death/tile005.png" id="72_qsqlb"]
+[ext_resource type="Texture2D" uid="uid://d1x8fb8ehi0dq" path="res://Assets/MainCharacter/death/tile006.png" id="73_bfbev"]
+[ext_resource type="Texture2D" uid="uid://tmedcy0unuhf" path="res://Assets/MainCharacter/death/tile007.png" id="74_y3sr2"]
+[ext_resource type="Texture2D" uid="uid://b4mpj2mviedkv" path="res://Assets/MainCharacter/death/tile008.png" id="75_v1pf6"]
+[ext_resource type="Texture2D" uid="uid://n7xrnwqqsw8a" path="res://Assets/MainCharacter/death/tile009.png" id="76_44a77"]
+[ext_resource type="Texture2D" uid="uid://c2cjcy15tv7mq" path="res://Assets/MainCharacter/death/tile010.png" id="77_ot58g"]
+[ext_resource type="Texture2D" uid="uid://c4pnujb10flk7" path="res://Assets/MainCharacter/death/tile011.png" id="78_hkfrx"]
+[ext_resource type="Texture2D" uid="uid://ds0jbhj3m5yt2" path="res://Assets/MainCharacter/death/tile012.png" id="79_x0mi5"]
+[ext_resource type="Texture2D" uid="uid://bfwavecwohlha" path="res://Assets/MainCharacter/death/tile013.png" id="80_yvxxj"]
+[ext_resource type="Texture2D" uid="uid://8hvwjjw4ywi1" path="res://Assets/MainCharacter/death/tile014.png" id="81_na1ih"]
+[ext_resource type="Texture2D" uid="uid://8uj0gc5u78kq" path="res://Assets/MainCharacter/death/tile015.png" id="82_05emg"]
+[ext_resource type="Texture2D" uid="uid://ck2mhf4qfapdj" path="res://Assets/MainCharacter/death/tile016.png" id="83_3pbjw"]
+[ext_resource type="Texture2D" uid="uid://cvfjhpsqvivru" path="res://Assets/MainCharacter/death/tile017.png" id="84_mp5wv"]
+[ext_resource type="Texture2D" uid="uid://jilaco041bb4" path="res://Assets/MainCharacter/death/tile018.png" id="85_4ndqf"]
+[ext_resource type="Texture2D" uid="uid://ujad6riw1de6" path="res://Assets/MainCharacter/death/tile019.png" id="86_aglic"]
+[ext_resource type="Texture2D" uid="uid://x4uirx18ffd3" path="res://Assets/MainCharacter/death/tile020.png" id="87_f1x2m"]
+[ext_resource type="Texture2D" uid="uid://dprhdsf32h0lt" path="res://Assets/MainCharacter/death/tile021.png" id="88_vjjie"]
+[ext_resource type="Texture2D" uid="uid://dkhkpdm75fab4" path="res://Assets/MainCharacter/death/tile022.png" id="89_pplt3"]
+[ext_resource type="Texture2D" uid="uid://dr4pvv3jxn5fk" path="res://Assets/MainCharacter/death/tile023.png" id="90_sui4j"]
+[ext_resource type="Texture2D" uid="uid://ddu0y3dbf4sv6" path="res://Assets/MainCharacter/death/tile024.png" id="91_7nw7h"]
+[ext_resource type="Texture2D" uid="uid://b2rpmdn3eqtok" path="res://Assets/MainCharacter/death/tile025.png" id="92_ru7ri"]
+[ext_resource type="Texture2D" uid="uid://x8c22at32q4x" path="res://Assets/MainCharacter/death/tile026.png" id="93_ks3lk"]
+[ext_resource type="Texture2D" uid="uid://cm62ut2n6k5d5" path="res://Assets/MainCharacter/death/tile027.png" id="94_p6shd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k5ert"]
 shader = ExtResource("2_r4o7w")
@@ -396,6 +424,22 @@ tracks/0/keys = {
 "values": [ExtResource("12_3fyl4"), ExtResource("13_70frn"), ExtResource("14_2iyu0"), ExtResource("15_fa62s"), ExtResource("16_qm3n0"), ExtResource("17_x7aao"), ExtResource("18_6ouu6"), ExtResource("19_i5hpi"), ExtResource("20_5pc05"), ExtResource("21_ael05")]
 }
 
+[sub_resource type="Animation" id="Animation_xuagn"]
+resource_name = "death"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("67_mw146"), ExtResource("68_caqmr"), ExtResource("69_1cnd2"), ExtResource("70_cmbbi"), ExtResource("71_kxxsc"), ExtResource("72_qsqlb"), ExtResource("73_bfbev"), ExtResource("74_y3sr2"), ExtResource("75_v1pf6"), ExtResource("76_44a77"), ExtResource("77_ot58g"), ExtResource("78_hkfrx"), ExtResource("79_x0mi5"), ExtResource("80_yvxxj"), ExtResource("81_na1ih"), ExtResource("82_05emg"), ExtResource("83_3pbjw"), ExtResource("84_mp5wv"), ExtResource("85_4ndqf"), ExtResource("86_aglic"), ExtResource("87_f1x2m"), ExtResource("88_vjjie"), ExtResource("89_pplt3"), ExtResource("90_sui4j"), ExtResource("91_7nw7h"), ExtResource("92_ru7ri"), ExtResource("93_ks3lk"), ExtResource("94_p6shd")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11o2n"]
 _data = {
 &"RESET": SubResource("Animation_0eyao"),
@@ -407,6 +451,7 @@ _data = {
 &"attack3_recover": SubResource("Animation_nor3g"),
 &"attack4": SubResource("Animation_r4o7w"),
 &"attack4_recover": SubResource("Animation_0ei1u"),
+&"death": SubResource("Animation_xuagn"),
 &"idle": SubResource("Animation_i1xd3"),
 &"walk": SubResource("Animation_ep7vl")
 }
@@ -595,3 +640,4 @@ polygon = PackedVector2Array(-2, -86, 61, -34, 73, 17, 65, 83, -27, 90, -21, 25,
 
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="entity_dies" from="HealthComponent" to="." method="_player_dies"]
