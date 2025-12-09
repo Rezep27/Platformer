@@ -18,3 +18,6 @@ func die():
 	is_dead = true
 	entity_dies.emit()
 	
+func get_current_health():
+	return current_health
+	

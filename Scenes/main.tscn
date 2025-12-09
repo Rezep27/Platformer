@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwwu8dq8y32cr"]
+[gd_scene load_steps=8 format=3 uid="uid://bwwu8dq8y32cr"]
 
 [ext_resource type="PackedScene" uid="uid://cox2sikv2luvq" path="res://Scenes/main_character.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://ce82tbk1b7qtc" path="res://Scenes/main.gd" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://d14odcyq38pte" path="res://Scenes/golem1.tscn" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://dwkk4v30hvjv3" path="res://Assets/UI/health_bar/life_bar.png" id="3_jjvhh"]
 [ext_resource type="Shader" uid="uid://cb4pmwv062gv0" path="res://Shaders/Healthbar.gdshader" id="4_kry3j"]
@@ -14,6 +15,7 @@ shader_parameter/cutoff = 0.5
 shader_parameter/tint_color = Color(0.1254902, 0.8745098, 0, 1)
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_kry3j")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 4
@@ -48,3 +50,5 @@ offset_top = 11.997207
 offset_right = 44.48317
 offset_bottom = 51.997208
 scale = Vector2(0.79286, 0.39686912)
+
+[connection signal="player_health_changed" from="MainCharacter" to="." method="_on_main_character_player_health_changed"]

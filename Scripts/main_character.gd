@@ -4,6 +4,9 @@ extends CharacterBody2D
 #Death signal
 signal player_died
 
+#Change in health signal
+signal player_health_changed
+
 const SPEED = 200.0
 const JUMP_VELOCITY = -800.0
 
@@ -28,6 +31,7 @@ var facing_right = true
 
 func _ready() -> void:
 	$HitBox/DamageCollider.set_deferred("disabled", true)
+	_update_health_ui()
 
 func _process(delta : float):
 	_update_facing()
@@ -131,8 +135,13 @@ func _update_facing():
 func apply_damage(damage : float):
 	$Sprite2D.start_flash()
 	$HealthComponent.apply_damage(damage)
+	_update_health_ui()
 		
-
+func _update_health_ui():
+	emit_signal("player_health_changed", $HealthComponent.get_current_health())
+	pass
+	
+	
 func _player_dies() -> void:
 	animation_tree["parameters/conditions/death"] = true
 	
