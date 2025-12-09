@@ -35,6 +35,9 @@ func check_animation():
 func apply_damage(damage : float):
 	$Sprite2D.start_flash()
 	$HealthComponent.apply_damage(damage)
+	
+func _update_health_ui():
+	pass
 
 func set_animation_state_false(animationName : String):
 		animation_tree["parameters/conditions/" + animationName] = false

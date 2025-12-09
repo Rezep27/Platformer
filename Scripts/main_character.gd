@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 
+#Death signal
+signal player_died
+
 const SPEED = 200.0
 const JUMP_VELOCITY = -800.0
 
@@ -131,4 +134,9 @@ func apply_damage(damage : float):
 		
 
 func _player_dies() -> void:
-	pass # Replace with function body.
+	animation_tree["parameters/conditions/death"] = true
+	
+func _death():
+	player_died.emit()
+	queue_free()
+	

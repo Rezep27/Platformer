@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=3 uid="uid://cox2sikv2luvq"]
+[gd_scene load_steps=142 format=3 uid="uid://cox2sikv2luvq"]
 
 [ext_resource type="Script" uid="uid://bdslh2j4umx6y" path="res://Scripts/main_character.gd" id="1_2o0tg"]
 [ext_resource type="Texture2D" uid="uid://dyu7ffwf7m11g" path="res://Assets/MainCharacter/idle/tile000.png" id="1_esnnb"]
@@ -426,7 +426,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_xuagn"]
 resource_name = "death"
-length = 3.0
+length = 2.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -438,6 +438,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("67_mw146"), ExtResource("68_caqmr"), ExtResource("69_1cnd2"), ExtResource("70_cmbbi"), ExtResource("71_kxxsc"), ExtResource("72_qsqlb"), ExtResource("73_bfbev"), ExtResource("74_y3sr2"), ExtResource("75_v1pf6"), ExtResource("76_44a77"), ExtResource("77_ot58g"), ExtResource("78_hkfrx"), ExtResource("79_x0mi5"), ExtResource("80_yvxxj"), ExtResource("81_na1ih"), ExtResource("82_05emg"), ExtResource("83_3pbjw"), ExtResource("84_mp5wv"), ExtResource("85_4ndqf"), ExtResource("86_aglic"), ExtResource("87_f1x2m"), ExtResource("88_vjjie"), ExtResource("89_pplt3"), ExtResource("90_sui4j"), ExtResource("91_7nw7h"), ExtResource("92_ru7ri"), ExtResource("93_ks3lk"), ExtResource("94_p6shd")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_death"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11o2n"]
@@ -482,6 +496,9 @@ animation = &"attack4"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4o7w"]
 animation = &"attack4_recover"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mw146"]
+animation = &"death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2o0tg"]
 animation = &"idle"
@@ -564,6 +581,14 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_caqmr"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1cnd2"]
+advance_mode = 2
+advance_condition = &"death"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5av31"]
 states/attack1/node = SubResource("AnimationNodeAnimation_o61cg")
 states/attack1/position = Vector2(656.1425, -12.011311)
@@ -581,12 +606,14 @@ states/attack4/node = SubResource("AnimationNodeAnimation_qotad")
 states/attack4/position = Vector2(656.638, -272.92157)
 states/attack4_recover/node = SubResource("AnimationNodeAnimation_r4o7w")
 states/attack4_recover/position = Vector2(452.89252, -273.42157)
+states/death/node = SubResource("AnimationNodeAnimation_mw146")
+states/death/position = Vector2(611.5913, 230.92242)
 states/idle/node = SubResource("AnimationNodeAnimation_2o0tg")
 states/idle/position = Vector2(457.39252, 101.5)
 states/walk/node = SubResource("AnimationNodeAnimation_3fyl4")
 states/walk/position = Vector2(653.8925, 95.98869)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_umvch"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_70frn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_2iyu0"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_26562"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_4xl3q"), "attack1", "attack1_recover", SubResource("AnimationNodeStateMachineTransition_dj3fl"), "attack1_recover", "idle", SubResource("AnimationNodeStateMachineTransition_abtru"), "attack1_recover", "walk", SubResource("AnimationNodeStateMachineTransition_ybmxl"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_gxyj0"), "attack2", "attack2_recover", SubResource("AnimationNodeStateMachineTransition_nijos"), "attack2_recover", "idle", SubResource("AnimationNodeStateMachineTransition_nqlx2"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_qotad"), "attack3", "attack3_recover", SubResource("AnimationNodeStateMachineTransition_r4o7w"), "attack3_recover", "idle", SubResource("AnimationNodeStateMachineTransition_k5ert"), "attack3", "attack4", SubResource("AnimationNodeStateMachineTransition_o3eni"), "attack4", "attack4_recover", SubResource("AnimationNodeStateMachineTransition_f3043"), "attack4_recover", "idle", SubResource("AnimationNodeStateMachineTransition_lqk43")]
-graph_offset = Vector2(-56.362022, -71.46981)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_umvch"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_70frn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_2iyu0"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_26562"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_4xl3q"), "attack1", "attack1_recover", SubResource("AnimationNodeStateMachineTransition_dj3fl"), "attack1_recover", "idle", SubResource("AnimationNodeStateMachineTransition_abtru"), "attack1_recover", "walk", SubResource("AnimationNodeStateMachineTransition_ybmxl"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_gxyj0"), "attack2", "attack2_recover", SubResource("AnimationNodeStateMachineTransition_nijos"), "attack2_recover", "idle", SubResource("AnimationNodeStateMachineTransition_nqlx2"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_qotad"), "attack3", "attack3_recover", SubResource("AnimationNodeStateMachineTransition_r4o7w"), "attack3_recover", "idle", SubResource("AnimationNodeStateMachineTransition_k5ert"), "attack3", "attack4", SubResource("AnimationNodeStateMachineTransition_o3eni"), "attack4", "attack4_recover", SubResource("AnimationNodeStateMachineTransition_f3043"), "attack4_recover", "idle", SubResource("AnimationNodeStateMachineTransition_lqk43"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_caqmr"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_1cnd2")]
+graph_offset = Vector2(175.09134, 42.922417)
 
 [node name="MainCharacter" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
@@ -620,6 +647,7 @@ parameters/conditions/attack3 = false
 parameters/conditions/attack3_recover = false
 parameters/conditions/attack4 = false
 parameters/conditions/attack4_recover = false
+parameters/conditions/death = false
 parameters/conditions/idle = false
 parameters/conditions/is_walking = false
 
