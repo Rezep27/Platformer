@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbnyb0pd2sftr"]
+
+[ext_resource type="Texture2D" uid="uid://btv6r5e8vl1v5" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_73.png" id="1_00g66"]
+[ext_resource type="Script" uid="uid://bla8bny2d7k21" path="res://Scripts/text_container.gd" id="1_ioj2a"]
+[ext_resource type="Texture2D" uid="uid://bp5frd80agt2q" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_74.png" id="2_ioj2a"]
+[ext_resource type="Texture2D" uid="uid://crhy0i2prpqck" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_75.png" id="3_fkepr"]
+[ext_resource type="Texture2D" uid="uid://cgys0hyybd82f" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_76.png" id="4_8xwwi"]
+[ext_resource type="Texture2D" uid="uid://cxcba2ofinoqn" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_77.png" id="5_4r7fb"]
+[ext_resource type="Texture2D" uid="uid://f1bkmkix6fiu" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_78.png" id="6_v2chb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_00g66"]
+font_size = 10
+shadow_size = 0
+
+[node name="TextContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ioj2a")
+
+[node name="Container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 218.0
+offset_top = 79.0
+offset_right = 258.0
+offset_bottom = 119.0
+
+[node name="TextureRect" type="TextureRect" parent="Container"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -120.0
+offset_top = -20.0
+offset_right = -80.0
+offset_bottom = 20.0
+scale = Vector2(2, 1)
+texture = ExtResource("1_00g66")
+
+[node name="TextureRect2" type="TextureRect" parent="Container"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+scale = Vector2(2, 1)
+texture = ExtResource("2_ioj2a")
+
+[node name="TextureRect3" type="TextureRect" parent="Container"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 20.0
+scale = Vector2(2, 1)
+texture = ExtResource("3_fkepr")
+
+[node name="TextureRect4" type="TextureRect" parent="Container"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -80.0
+offset_bottom = 60.0
+scale = Vector2(2, 1)
+texture = ExtResource("4_8xwwi")
+
+[node name="TextureRect5" type="TextureRect" parent="Container"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -40.0
+offset_top = 20.0
+offset_bottom = 60.0
+scale = Vector2(2, 1)
+texture = ExtResource("5_4r7fb")
+
+[node name="TextureRect6" type="TextureRect" parent="Container"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 60.0
+scale = Vector2(2, 1)
+texture = ExtResource("6_v2chb")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 115.0
+offset_top = 76.0
+offset_right = 321.0
+offset_bottom = 125.0
+label_settings = SubResource("LabelSettings_00g66")
