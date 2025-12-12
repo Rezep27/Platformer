@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwwu8dq8y32cr"]
+[gd_scene load_steps=9 format=3 uid="uid://bwwu8dq8y32cr"]
 
 [ext_resource type="PackedScene" uid="uid://cox2sikv2luvq" path="res://Scenes/main_character.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://ce82tbk1b7qtc" path="res://Scenes/main.gd" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://d14odcyq38pte" path="res://Scenes/golem1.tscn" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://dwkk4v30hvjv3" path="res://Assets/UI/health_bar/life_bar.png" id="3_jjvhh"]
 [ext_resource type="Shader" uid="uid://cb4pmwv062gv0" path="res://Shaders/Healthbar.gdshader" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://cbnyb0pd2sftr" path="res://Scenes/text_container.tscn" id="6_21xkr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 size = Vector2(1883, 56)
@@ -27,7 +28,7 @@ shape = SubResource("RectangleShape2D_7u77a")
 debug_color = Color(0.6509804, 0.42745098, 0.24313726, 0.41960785)
 
 [node name="Golem1" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(822, 469)
+position = Vector2(1305, 469)
 scale = Vector2(-1, 1)
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_jjgbg")]
@@ -50,5 +51,12 @@ offset_top = 11.997207
 offset_right = 44.48317
 offset_bottom = 51.997208
 scale = Vector2(0.79286, 0.39686912)
+
+[node name="TextContainer" parent="HUD" instance=ExtResource("6_21xkr")]
+offset_left = 238.0
+offset_top = 476.0001
+offset_right = 238.0
+offset_bottom = 476.00012
+scale = Vector2(5, 5)
 
 [connection signal="player_health_changed" from="MainCharacter" to="." method="_on_main_character_player_health_changed"]

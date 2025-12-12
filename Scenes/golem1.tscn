@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://d14odcyq38pte"]
+[gd_scene load_steps=57 format=3 uid="uid://d14odcyq38pte"]
 
 [ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
 [ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
@@ -79,8 +79,8 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.6, 0.6666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": ["attack"],
 "method": &"set_animation_state_false"
@@ -90,6 +90,9 @@ tracks/1/keys = {
 }, {
 "args": [],
 "method": &"_deactivate_hitbox_collider"
+}, {
+"args": [],
+"method": &"_attack_finished"
 }]
 }
 
@@ -225,6 +228,9 @@ graph_offset = Vector2(206.47478, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01dtv"]
 size = Vector2(106, 119)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_espec"]
+size = Vector2(602, 388)
+
 [node name="Golem1" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
 collision_mask = 5
@@ -272,6 +278,13 @@ collision_layer = 8
 position = Vector2(58, -2)
 polygon = PackedVector2Array(-2, -62, 69, -55, 100, 1, 98, 77, 1, 74)
 
+[node name="FollowPlayerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowPlayerArea"]
+position = Vector2(309, -30)
+shape = SubResource("RectangleShape2D_espec")
+debug_color = Color(0.6128916, 0.36231512, 0.9963878, 0.41960785)
+
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -280,4 +293,6 @@ one_shot = true
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="FollowPlayerArea" to="." method="_on_follow_player_area_body_entered"]
+[connection signal="body_exited" from="FollowPlayerArea" to="." method="_on_follow_player_area_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

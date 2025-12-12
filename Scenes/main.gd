@@ -5,7 +5,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-		pass
+		$HUD/TextContainer._update_text_at_speed("Bienvenido a mi juego. Derrota al Golem de piedra.")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
