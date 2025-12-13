@@ -50,6 +50,10 @@ func _physics_process(delta: float) -> void:
 func check_animation():
 	if velocity == Vector2.ZERO:
 		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/walk"] = false
+	elif !is_player_in_attack_range and velocity != Vector2.ZERO:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/walk"] = true
 		
 func apply_damage(damage : float):
 	$Sprite2D.start_flash()
@@ -115,3 +119,7 @@ func _on_follow_player_area_body_entered(body: Node2D) -> void:
 func _on_follow_player_area_body_exited(body: Node2D) -> void:
 	if (body.is_in_group("player")):
 		is_player_in_move_range = false
+
+
+func _on_turn_around_area_body_entered(body: Node2D) -> void:
+	scale.x *= -1

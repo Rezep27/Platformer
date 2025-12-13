@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d14odcyq38pte"]
+[gd_scene load_steps=73 format=3 uid="uid://d14odcyq38pte"]
 
 [ext_resource type="Texture2D" uid="uid://d1wf0itlafc5i" path="res://Assets/Enemies/Golem1/idle/tile000.png" id="1_5g0rk"]
 [ext_resource type="Script" uid="uid://ltlgo7canswx" path="res://Scripts/golem_1.gd" id="1_fwbkh"]
@@ -37,6 +37,16 @@
 [ext_resource type="Texture2D" uid="uid://b5d028lt801ow" path="res://Assets/Enemies/Golem1/attack/tile007.png" id="32_toivp"]
 [ext_resource type="Texture2D" uid="uid://2rd7lr2ygcav" path="res://Assets/Enemies/Golem1/attack/tile008.png" id="33_vpne7"]
 [ext_resource type="Texture2D" uid="uid://bkv4sao0lwjx" path="res://Assets/Enemies/Golem1/attack/tile009.png" id="34_3axlk"]
+[ext_resource type="Texture2D" uid="uid://db7h52t3krr6d" path="res://Assets/Enemies/Golem1/walk/tile000.png" id="37_2h5il"]
+[ext_resource type="Texture2D" uid="uid://81bon83d87bi" path="res://Assets/Enemies/Golem1/walk/tile001.png" id="38_qwmpm"]
+[ext_resource type="Texture2D" uid="uid://bioer3v6v8lod" path="res://Assets/Enemies/Golem1/walk/tile002.png" id="39_ouupe"]
+[ext_resource type="Texture2D" uid="uid://drus7xfwlsb0l" path="res://Assets/Enemies/Golem1/walk/tile003.png" id="40_jn7vk"]
+[ext_resource type="Texture2D" uid="uid://77hipe3klgry" path="res://Assets/Enemies/Golem1/walk/tile004.png" id="41_pfi7h"]
+[ext_resource type="Texture2D" uid="uid://bc507qdoliinj" path="res://Assets/Enemies/Golem1/walk/tile005.png" id="42_iwr7x"]
+[ext_resource type="Texture2D" uid="uid://bfuxr2t54fjf0" path="res://Assets/Enemies/Golem1/walk/tile006.png" id="43_0h6eu"]
+[ext_resource type="Texture2D" uid="uid://dxn8qdidx7hfj" path="res://Assets/Enemies/Golem1/walk/tile007.png" id="44_5ub0x"]
+[ext_resource type="Texture2D" uid="uid://6ndiexh05go7" path="res://Assets/Enemies/Golem1/walk/tile008.png" id="45_d6awv"]
+[ext_resource type="Texture2D" uid="uid://bgccu1q8jt8sd" path="res://Assets/Enemies/Golem1/walk/tile009.png" id="46_ov7in"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_espec"]
 shader = ExtResource("2_i8kyq")
@@ -172,13 +182,30 @@ tracks/0/keys = {
 "values": [ExtResource("1_5g0rk"), ExtResource("2_01dtv"), ExtResource("3_fwbkh"), ExtResource("4_wakti"), ExtResource("5_nr40b"), ExtResource("6_8dar4"), ExtResource("7_rncs2"), ExtResource("8_kwpm0")]
 }
 
+[sub_resource type="Animation" id="Animation_46i2v"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("37_2h5il"), ExtResource("38_qwmpm"), ExtResource("39_ouupe"), ExtResource("40_jn7vk"), ExtResource("41_pfi7h"), ExtResource("42_iwr7x"), ExtResource("43_0h6eu"), ExtResource("44_5ub0x"), ExtResource("45_d6awv"), ExtResource("46_ov7in")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_da1ag"]
 _data = {
 &"RESET": SubResource("Animation_e0gn1"),
 &"attack": SubResource("Animation_ex2sn"),
 &"die": SubResource("Animation_4t0ej"),
 &"hurt": SubResource("Animation_fwbkh"),
-&"idle": SubResource("Animation_5g0rk")
+&"idle": SubResource("Animation_5g0rk"),
+&"walk": SubResource("Animation_46i2v")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5upfm"]
@@ -189,6 +216,9 @@ animation = &"die"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01dtv"]
 animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uf2ya"]
+animation = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fwbkh"]
 advance_mode = 2
@@ -214,6 +244,19 @@ advance_condition = &"die"
 advance_mode = 2
 advance_condition = &"die"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ltm7t"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wtlxr"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iquam"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"walk"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l5ckk"]
 states/End/position = Vector2(888.5, 201.875)
 states/attack/node = SubResource("AnimationNodeAnimation_5upfm")
@@ -222,14 +265,19 @@ states/die/node = SubResource("AnimationNodeAnimation_c247b")
 states/die/position = Vector2(434, 203.5625)
 states/idle/node = SubResource("AnimationNodeAnimation_01dtv")
 states/idle/position = Vector2(367.5, 88.5)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh"), "die", "End", SubResource("AnimationNodeStateMachineTransition_c247b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_i8kyq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_espec"), "attack", "die", SubResource("AnimationNodeStateMachineTransition_4t0ej"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_6vydl")]
-graph_offset = Vector2(206.47478, 0)
+states/walk/node = SubResource("AnimationNodeAnimation_uf2ya")
+states/walk/position = Vector2(425.4748, -19.578033)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fwbkh"), "die", "End", SubResource("AnimationNodeStateMachineTransition_c247b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_i8kyq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_espec"), "attack", "die", SubResource("AnimationNodeStateMachineTransition_4t0ej"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_6vydl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_ltm7t"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_wtlxr"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_iquam")]
+graph_offset = Vector2(206.47478, -68.07803)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01dtv"]
 size = Vector2(106, 119)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_espec"]
 size = Vector2(602, 388)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h5il"]
+size = Vector2(615, 384)
 
 [node name="Golem1" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
@@ -256,6 +304,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/die = false
 parameters/conditions/idle = false
+parameters/conditions/walk = false
 
 [node name="HealthComponent" parent="." instance=ExtResource("12_8dar4")]
 
@@ -289,6 +338,13 @@ debug_color = Color(0.6128916, 0.36231512, 0.9963878, 0.41960785)
 wait_time = 2.0
 one_shot = true
 
+[node name="TurnAroundArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnAroundArea"]
+position = Vector2(-315, -32)
+shape = SubResource("RectangleShape2D_2h5il")
+debug_color = Color(0.4314084, 0.46586353, 0.9793512, 0.41960785)
+
 [connection signal="entity_dies" from="HealthComponent" to="." method="on_entity_death"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
@@ -296,3 +352,4 @@ one_shot = true
 [connection signal="body_entered" from="FollowPlayerArea" to="." method="_on_follow_player_area_body_entered"]
 [connection signal="body_exited" from="FollowPlayerArea" to="." method="_on_follow_player_area_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="TurnAroundArea" to="." method="_on_turn_around_area_body_entered"]
