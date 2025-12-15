@@ -1,31 +1,43 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwwu8dq8y32cr"]
+[gd_scene load_steps=13 format=3 uid="uid://bwwu8dq8y32cr"]
 
 [ext_resource type="PackedScene" uid="uid://cox2sikv2luvq" path="res://Scenes/main_character.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://ce82tbk1b7qtc" path="res://Scenes/main.gd" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://d14odcyq38pte" path="res://Scenes/golem1.tscn" id="2_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://dbgypnj3rj1gv" path="res://Assets/Terrain/BG_3.png" id="2_hptm8"]
+[ext_resource type="Texture2D" uid="uid://cxcbo3abfgqrv" path="res://Assets/Terrain/BG_2.png" id="3_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://dwkk4v30hvjv3" path="res://Assets/UI/health_bar/life_bar.png" id="3_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://ct85afgyjwgtl" path="res://Assets/Terrain/BG_1.png" id="4_6iyac"]
 [ext_resource type="Shader" uid="uid://cb4pmwv062gv0" path="res://Shaders/Healthbar.gdshader" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://cbnyb0pd2sftr" path="res://Scenes/text_container.tscn" id="6_21xkr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
-size = Vector2(1883, 56)
+[ext_resource type="Texture2D" uid="uid://beujenqlexily" path="res://Assets/Terrain/Mossy - FloatingPlatforms.png" id="7_6bp64"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21xkr"]
 shader = ExtResource("4_kry3j")
 shader_parameter/cutoff = 0.5
 shader_parameter/tint_color = Color(0.1254902, 0.8745098, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
+size = Vector2(1883, 56)
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_kry3j")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-collision_layer = 4
-collision_mask = 0
+[node name="Backgrounds" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(531, 576)
-shape = SubResource("RectangleShape2D_7u77a")
-debug_color = Color(0.6509804, 0.42745098, 0.24313726, 0.41960785)
+[node name="Background2" type="Sprite2D" parent="Backgrounds"]
+position = Vector2(299, 589)
+scale = Vector2(4, 3.823)
+texture = ExtResource("2_hptm8")
+
+[node name="Background1" type="Sprite2D" parent="Backgrounds"]
+position = Vector2(299, 589)
+scale = Vector2(4, 3.823)
+texture = ExtResource("3_d1ilt")
+
+[node name="Background" type="Sprite2D" parent="Backgrounds"]
+position = Vector2(299, 589)
+scale = Vector2(4, 3.823)
+texture = ExtResource("4_6iyac")
 
 [node name="Golem1" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(1305, 469)
@@ -58,5 +70,20 @@ offset_top = 476.0001
 offset_right = 238.0
 offset_bottom = 476.00012
 scale = Vector2(5, 5)
+
+[node name="Platform" type="Sprite2D" parent="."]
+position = Vector2(514, 722)
+texture = ExtResource("7_6bp64")
+region_enabled = true
+region_rect = Rect2(-4.487671, 1537.696, 2041.7975, 494.47168)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(531, 576)
+shape = SubResource("RectangleShape2D_7u77a")
+debug_color = Color(0.6509804, 0.42745098, 0.24313726, 0.41960785)
 
 [connection signal="player_health_changed" from="MainCharacter" to="." method="_on_main_character_player_health_changed"]

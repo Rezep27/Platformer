@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbnyb0pd2sftr"]
+[gd_scene load_steps=10 format=3 uid="uid://cbnyb0pd2sftr"]
 
 [ext_resource type="Texture2D" uid="uid://btv6r5e8vl1v5" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_73.png" id="1_00g66"]
 [ext_resource type="Script" uid="uid://bla8bny2d7k21" path="res://Scripts/text_container.gd" id="1_ioj2a"]
@@ -7,9 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cgys0hyybd82f" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_76.png" id="4_8xwwi"]
 [ext_resource type="Texture2D" uid="uid://cxcba2ofinoqn" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_77.png" id="5_4r7fb"]
 [ext_resource type="Texture2D" uid="uid://f1bkmkix6fiu" path="res://Assets/UI/Free-GUI-for-Cyberpunk-Pixel-Art1/1 Frames/Frame_78.png" id="6_v2chb"]
+[ext_resource type="FontFile" uid="uid://dwffh3wet5jo1" path="res://Assets/Fonts/Silver.ttf" id="8_fkepr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_00g66"]
-font_size = 10
+font = ExtResource("8_fkepr")
+font_size = 24
+font_color = Color(0.21568628, 1, 1, 1)
 shadow_size = 0
 
 [node name="TextContainer" type="Control"]
