@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://cox2sikv2luvq"]
+[gd_scene load_steps=155 format=3 uid="uid://cox2sikv2luvq"]
 
 [ext_resource type="Script" uid="uid://bdslh2j4umx6y" path="res://Scripts/main_character.gd" id="1_2o0tg"]
 [ext_resource type="Texture2D" uid="uid://dyu7ffwf7m11g" path="res://Assets/MainCharacter/idle/tile000.png" id="1_esnnb"]
@@ -95,6 +95,12 @@
 [ext_resource type="Texture2D" uid="uid://b2rpmdn3eqtok" path="res://Assets/MainCharacter/death/tile025.png" id="92_ru7ri"]
 [ext_resource type="Texture2D" uid="uid://x8c22at32q4x" path="res://Assets/MainCharacter/death/tile026.png" id="93_ks3lk"]
 [ext_resource type="Texture2D" uid="uid://cm62ut2n6k5d5" path="res://Assets/MainCharacter/death/tile027.png" id="94_p6shd"]
+[ext_resource type="Texture2D" uid="uid://ddauwilx6sy5a" path="res://Assets/MainCharacter/blocks/start_block/tile000.png" id="95_bfbev"]
+[ext_resource type="Texture2D" uid="uid://dbk3gwjggv7me" path="res://Assets/MainCharacter/blocks/start_block/tile001.png" id="96_y3sr2"]
+[ext_resource type="Texture2D" uid="uid://d1suu8dsauxi5" path="res://Assets/MainCharacter/blocks/start_block/tile002.png" id="97_v1pf6"]
+[ext_resource type="Texture2D" uid="uid://cl0cvkfxdamk" path="res://Assets/MainCharacter/blocks/end_block/tile000.png" id="98_44a77"]
+[ext_resource type="Texture2D" uid="uid://bhmhtghjska0f" path="res://Assets/MainCharacter/blocks/end_block/tile001.png" id="99_ot58g"]
+[ext_resource type="Texture2D" uid="uid://l8k6i2vxst32" path="res://Assets/MainCharacter/blocks/end_block/tile002.png" id="100_hkfrx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k5ert"]
 shader = ExtResource("2_r4o7w")
@@ -392,6 +398,36 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_xuagn"]
+resource_name = "death"
+length = 2.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("67_mw146"), ExtResource("68_caqmr"), ExtResource("69_1cnd2"), ExtResource("70_cmbbi"), ExtResource("71_kxxsc"), ExtResource("72_qsqlb"), ExtResource("73_bfbev"), ExtResource("74_y3sr2"), ExtResource("75_v1pf6"), ExtResource("76_44a77"), ExtResource("77_ot58g"), ExtResource("78_hkfrx"), ExtResource("79_x0mi5"), ExtResource("80_yvxxj"), ExtResource("81_na1ih"), ExtResource("82_05emg"), ExtResource("83_3pbjw"), ExtResource("84_mp5wv"), ExtResource("85_4ndqf"), ExtResource("86_aglic"), ExtResource("87_f1x2m"), ExtResource("88_vjjie"), ExtResource("89_pplt3"), ExtResource("90_sui4j"), ExtResource("91_7nw7h"), ExtResource("92_ru7ri"), ExtResource("93_ks3lk"), ExtResource("94_p6shd")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_death"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_i1xd3"]
 resource_name = "idle"
 loop_mode = 1
@@ -424,9 +460,9 @@ tracks/0/keys = {
 "values": [ExtResource("12_3fyl4"), ExtResource("13_70frn"), ExtResource("14_2iyu0"), ExtResource("15_fa62s"), ExtResource("16_qm3n0"), ExtResource("17_x7aao"), ExtResource("18_6ouu6"), ExtResource("19_i5hpi"), ExtResource("20_5pc05"), ExtResource("21_ael05")]
 }
 
-[sub_resource type="Animation" id="Animation_xuagn"]
-resource_name = "death"
-length = 2.9
+[sub_resource type="Animation" id="Animation_x0mi5"]
+resource_name = "start_block"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -434,24 +470,26 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("67_mw146"), ExtResource("68_caqmr"), ExtResource("69_1cnd2"), ExtResource("70_cmbbi"), ExtResource("71_kxxsc"), ExtResource("72_qsqlb"), ExtResource("73_bfbev"), ExtResource("74_y3sr2"), ExtResource("75_v1pf6"), ExtResource("76_44a77"), ExtResource("77_ot58g"), ExtResource("78_hkfrx"), ExtResource("79_x0mi5"), ExtResource("80_yvxxj"), ExtResource("81_na1ih"), ExtResource("82_05emg"), ExtResource("83_3pbjw"), ExtResource("84_mp5wv"), ExtResource("85_4ndqf"), ExtResource("86_aglic"), ExtResource("87_f1x2m"), ExtResource("88_vjjie"), ExtResource("89_pplt3"), ExtResource("90_sui4j"), ExtResource("91_7nw7h"), ExtResource("92_ru7ri"), ExtResource("93_ks3lk"), ExtResource("94_p6shd")]
+"values": [ExtResource("95_bfbev"), ExtResource("96_y3sr2"), ExtResource("97_v1pf6")]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_death"
-}]
+
+[sub_resource type="Animation" id="Animation_yvxxj"]
+resource_name = "end_block"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("98_44a77"), ExtResource("99_ot58g"), ExtResource("100_hkfrx")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11o2n"]
@@ -466,7 +504,9 @@ _data = {
 &"attack4": SubResource("Animation_r4o7w"),
 &"attack4_recover": SubResource("Animation_0ei1u"),
 &"death": SubResource("Animation_xuagn"),
+&"end_block": SubResource("Animation_yvxxj"),
 &"idle": SubResource("Animation_i1xd3"),
+&"start_block": SubResource("Animation_x0mi5"),
 &"walk": SubResource("Animation_ep7vl")
 }
 
@@ -500,8 +540,14 @@ animation = &"attack4_recover"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mw146"]
 animation = &"death"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bfbev"]
+animation = &"end_block"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2o0tg"]
 animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3sr2"]
+animation = &"start_block"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3fyl4"]
 animation = &"walk"
@@ -589,6 +635,18 @@ advance_condition = &"death"
 advance_mode = 2
 advance_condition = &"death"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v1pf6"]
+advance_mode = 2
+advance_condition = &"start_block"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_44a77"]
+advance_mode = 2
+advance_condition = &"end_block"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ot58g"]
+advance_mode = 2
+advance_condition = &"idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5av31"]
 states/attack1/node = SubResource("AnimationNodeAnimation_o61cg")
 states/attack1/position = Vector2(656.1425, -12.011311)
@@ -608,12 +666,16 @@ states/attack4_recover/node = SubResource("AnimationNodeAnimation_r4o7w")
 states/attack4_recover/position = Vector2(452.89252, -273.42157)
 states/death/node = SubResource("AnimationNodeAnimation_mw146")
 states/death/position = Vector2(611.5913, 230.92242)
+states/end_block/node = SubResource("AnimationNodeAnimation_bfbev")
+states/end_block/position = Vector2(237.34134, 2.296074)
 states/idle/node = SubResource("AnimationNodeAnimation_2o0tg")
 states/idle/position = Vector2(457.39252, 101.5)
+states/start_block/node = SubResource("AnimationNodeAnimation_y3sr2")
+states/start_block/position = Vector2(237.59134, -116.577576)
 states/walk/node = SubResource("AnimationNodeAnimation_3fyl4")
 states/walk/position = Vector2(653.8925, 95.98869)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_umvch"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_70frn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_2iyu0"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_26562"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_4xl3q"), "attack1", "attack1_recover", SubResource("AnimationNodeStateMachineTransition_dj3fl"), "attack1_recover", "idle", SubResource("AnimationNodeStateMachineTransition_abtru"), "attack1_recover", "walk", SubResource("AnimationNodeStateMachineTransition_ybmxl"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_gxyj0"), "attack2", "attack2_recover", SubResource("AnimationNodeStateMachineTransition_nijos"), "attack2_recover", "idle", SubResource("AnimationNodeStateMachineTransition_nqlx2"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_qotad"), "attack3", "attack3_recover", SubResource("AnimationNodeStateMachineTransition_r4o7w"), "attack3_recover", "idle", SubResource("AnimationNodeStateMachineTransition_k5ert"), "attack3", "attack4", SubResource("AnimationNodeStateMachineTransition_o3eni"), "attack4", "attack4_recover", SubResource("AnimationNodeStateMachineTransition_f3043"), "attack4_recover", "idle", SubResource("AnimationNodeStateMachineTransition_lqk43"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_caqmr"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_1cnd2")]
-graph_offset = Vector2(175.09134, 42.922417)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_umvch"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_70frn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_2iyu0"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_26562"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_4xl3q"), "attack1", "attack1_recover", SubResource("AnimationNodeStateMachineTransition_dj3fl"), "attack1_recover", "idle", SubResource("AnimationNodeStateMachineTransition_abtru"), "attack1_recover", "walk", SubResource("AnimationNodeStateMachineTransition_ybmxl"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_gxyj0"), "attack2", "attack2_recover", SubResource("AnimationNodeStateMachineTransition_nijos"), "attack2_recover", "idle", SubResource("AnimationNodeStateMachineTransition_nqlx2"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_qotad"), "attack3", "attack3_recover", SubResource("AnimationNodeStateMachineTransition_r4o7w"), "attack3_recover", "idle", SubResource("AnimationNodeStateMachineTransition_k5ert"), "attack3", "attack4", SubResource("AnimationNodeStateMachineTransition_o3eni"), "attack4", "attack4_recover", SubResource("AnimationNodeStateMachineTransition_f3043"), "attack4_recover", "idle", SubResource("AnimationNodeStateMachineTransition_lqk43"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_caqmr"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_1cnd2"), "idle", "start_block", SubResource("AnimationNodeStateMachineTransition_v1pf6"), "start_block", "end_block", SubResource("AnimationNodeStateMachineTransition_44a77"), "end_block", "idle", SubResource("AnimationNodeStateMachineTransition_ot58g")]
+graph_offset = Vector2(175.09134, -122.703926)
 
 [node name="MainCharacter" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
@@ -648,8 +710,10 @@ parameters/conditions/attack3_recover = false
 parameters/conditions/attack4 = false
 parameters/conditions/attack4_recover = false
 parameters/conditions/death = false
+parameters/conditions/end_block = false
 parameters/conditions/idle = false
 parameters/conditions/is_walking = false
+parameters/conditions/start_block = false
 
 [node name="ComboTimer" type="Timer" parent="."]
 wait_time = 0.3

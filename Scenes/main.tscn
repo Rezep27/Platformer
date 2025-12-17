@@ -17,7 +17,7 @@ shader_parameter/cutoff = 0.5
 shader_parameter/tint_color = Color(0.1254902, 0.8745098, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
-size = Vector2(1883, 56)
+size = Vector2(1883, 28)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_kry3j")
@@ -38,6 +38,12 @@ texture = ExtResource("3_d1ilt")
 position = Vector2(299, 589)
 scale = Vector2(4, 3.823)
 texture = ExtResource("4_6iyac")
+
+[node name="Platform" type="Sprite2D" parent="."]
+position = Vector2(514, 722)
+texture = ExtResource("7_6bp64")
+region_enabled = true
+region_rect = Rect2(-4.487671, 1537.696, 2041.7975, 494.47168)
 
 [node name="Golem1" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(1305, 469)
@@ -71,18 +77,12 @@ offset_right = 238.0
 offset_bottom = 476.00012
 scale = Vector2(5, 5)
 
-[node name="Platform" type="Sprite2D" parent="."]
-position = Vector2(514, 722)
-texture = ExtResource("7_6bp64")
-region_enabled = true
-region_rect = Rect2(-4.487671, 1537.696, 2041.7975, 494.47168)
-
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(531, 576)
+position = Vector2(531, 590)
 shape = SubResource("RectangleShape2D_7u77a")
 debug_color = Color(0.6509804, 0.42745098, 0.24313726, 0.41960785)
 

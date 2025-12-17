@@ -17,8 +17,8 @@ var attack_index : int = 0
 #State, if the user can chain an attack
 var can_chain : bool = false
 
-#State of hitstop
-var is_on_hitstop = false
+#States if the player is blocking
+var is_blocking
 
 var attack_damage = 30
 
@@ -35,6 +35,8 @@ func _ready() -> void:
 
 func _process(delta : float):
 	_update_facing()
+	if Input.is_action_pressed("block") and !is_busy:
+		_start_block()
 	if Input.is_action_just_pressed("attack"):
 		if !is_busy and attack_index == 0:
 			attack_index = 1
@@ -94,10 +96,10 @@ func attack_animation_finished(animation_name):
 
 func _go_to_recovery():
 	can_chain = false
-	is_busy = false
 	var att_index : int = attack_index
 	attack_index = 0
 	animation_tree["parameters/conditions/attack" + str(att_index) + "_recover"] = true
+	is_busy = false
 	
 
 func _on_combo_timer_timeout() -> void:
@@ -133,6 +135,8 @@ func _update_facing():
 		scale.x *= -1
 		
 func apply_damage(damage : float):
+	if is_blocking:
+		pass
 	$Sprite2D.start_flash()
 	$HealthComponent.apply_damage(damage)
 	_update_health_ui()
@@ -149,3 +153,12 @@ func _death():
 	player_died.emit()
 	queue_free()
 	
+func _start_block():
+	animation_tree["parameters/conditions/start_block"]
+	is_busy = true
+	is_blocking = true
+
+func _end_block():
+	animation_tree["parameters/conditions/end_block"]
+	is_busy = false
+	is_blocking = false
