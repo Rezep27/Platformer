@@ -428,6 +428,22 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_yvxxj"]
+resource_name = "end_block"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("98_44a77"), ExtResource("99_ot58g"), ExtResource("100_hkfrx")]
+}
+
 [sub_resource type="Animation" id="Animation_i1xd3"]
 resource_name = "idle"
 loop_mode = 1
@@ -442,22 +458,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("1_esnnb"), ExtResource("2_2o0tg"), ExtResource("3_umvch"), ExtResource("4_5av31"), ExtResource("5_3vvc7"), ExtResource("6_6ic4x"), ExtResource("7_hajwg"), ExtResource("8_7eqbn"), ExtResource("9_olw23"), ExtResource("10_pqtas")]
-}
-
-[sub_resource type="Animation" id="Animation_ep7vl"]
-resource_name = "walk"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("12_3fyl4"), ExtResource("13_70frn"), ExtResource("14_2iyu0"), ExtResource("15_fa62s"), ExtResource("16_qm3n0"), ExtResource("17_x7aao"), ExtResource("18_6ouu6"), ExtResource("19_i5hpi"), ExtResource("20_5pc05"), ExtResource("21_ael05")]
 }
 
 [sub_resource type="Animation" id="Animation_x0mi5"]
@@ -476,9 +476,9 @@ tracks/0/keys = {
 "values": [ExtResource("95_bfbev"), ExtResource("96_y3sr2"), ExtResource("97_v1pf6")]
 }
 
-[sub_resource type="Animation" id="Animation_yvxxj"]
-resource_name = "end_block"
-length = 0.3
+[sub_resource type="Animation" id="Animation_ep7vl"]
+resource_name = "walk"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -486,10 +486,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("98_44a77"), ExtResource("99_ot58g"), ExtResource("100_hkfrx")]
+"values": [ExtResource("12_3fyl4"), ExtResource("13_70frn"), ExtResource("14_2iyu0"), ExtResource("15_fa62s"), ExtResource("16_qm3n0"), ExtResource("17_x7aao"), ExtResource("18_6ouu6"), ExtResource("19_i5hpi"), ExtResource("20_5pc05"), ExtResource("21_ael05")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11o2n"]

@@ -37,6 +37,10 @@ func _process(delta : float):
 	_update_facing()
 	if Input.is_action_pressed("block") and !is_busy:
 		_start_block()
+	
+	if Input.is_action_just_released("block") and is_blocking:
+		_end_block()
+		
 	if Input.is_action_just_pressed("attack"):
 		if !is_busy and attack_index == 0:
 			attack_index = 1
@@ -154,11 +158,11 @@ func _death():
 	queue_free()
 	
 func _start_block():
-	animation_tree["parameters/conditions/start_block"]
+	animation_tree["parameters/conditions/start_block"] = true
 	is_busy = true
 	is_blocking = true
 
 func _end_block():
-	animation_tree["parameters/conditions/end_block"]
+	animation_tree["parameters/conditions/end_block"] = true
 	is_busy = false
 	is_blocking = false
