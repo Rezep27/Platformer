@@ -35,10 +35,17 @@ func _ready() -> void:
 
 func _process(delta : float):
 	_update_facing()
-	if Input.is_action_pressed("block") and !is_busy:
+	if Input.is_action_just_pressed("block") and !is_busy:
+		print("bloqueo iniciado")
 		_start_block()
 	
+	if Input.is_action_pressed("block") and is_blocking:
+		print("Bloqueo mantenido")
+		is_blocking = true
+		_hold_block()
+	
 	if Input.is_action_just_released("block") and is_blocking:
+		print("Bloqueo liberado")
 		_end_block()
 		
 	if Input.is_action_just_pressed("attack"):
@@ -100,10 +107,11 @@ func attack_animation_finished(animation_name):
 
 func _go_to_recovery():
 	can_chain = false
+	is_busy = false
 	var att_index : int = attack_index
 	attack_index = 0
 	animation_tree["parameters/conditions/attack" + str(att_index) + "_recover"] = true
-	is_busy = false
+	
 	
 
 func _on_combo_timer_timeout() -> void:
@@ -140,7 +148,7 @@ func _update_facing():
 		
 func apply_damage(damage : float):
 	if is_blocking:
-		pass
+		return
 	$Sprite2D.start_flash()
 	$HealthComponent.apply_damage(damage)
 	_update_health_ui()
@@ -161,6 +169,10 @@ func _start_block():
 	animation_tree["parameters/conditions/start_block"] = true
 	is_busy = true
 	is_blocking = true
+	can_chain = false
+
+func _hold_block():
+	animation_tree["parameters/conditions/hold_block"] = true
 
 func _end_block():
 	animation_tree["parameters/conditions/end_block"] = true
